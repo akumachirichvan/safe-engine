@@ -1,0 +1,1318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Safe Engine | Find Your Home in Yaoundé</title>
+<meta name="description" content="Safe Engine — verified rental properties in Yaoundé, Cameroon. Bilingual, affordable, trusted.">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpolygon points='50,2 93,26 93,74 50,98 7,74 7,26' fill='%231A6B3C' stroke='%23F5A623' stroke-width='4'/%3E%3Ctext x='50' y='58' text-anchor='middle' font-family='Arial Black,sans-serif' font-weight='900' font-size='32' fill='%23F5A623' letter-spacing='-2'%3ESE%3C/text%3E%3Ccircle cx='50' cy='80' r='3' fill='%23F5A623'/%3E%3C/svg%3E">
+<script>if(history.scrollRestoration)history.scrollRestoration='manual';window.scrollTo(0,0);</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --green:#1A6B3C;--green-mid:#22884E;--green-light:#2FAF65;
+  --amber:#F5A623;--amber-light:#FFC55A;
+  --cream:#F8F5EF;--dark:#0E1C13;--slate:#4A5C52;
+  --muted:#8FA395;--white:#ffffff;--card-bg:#ffffff;--border:#DDE8E0;
+}
+html{scroll-behavior:smooth}
+body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--dark);overflow-x:hidden}
+
+/* LANG TOGGLE */
+#lang-toggle{position:fixed;top:84px;right:20px;z-index:200;display:flex;border-radius:24px;overflow:hidden;box-shadow:0 4px 20px rgba(0,0,0,0.22)}
+.lang-btn{padding:6px 16px;font-size:0.7rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;border:none;cursor:pointer;transition:background 0.25s,color 0.25s;background:rgba(14,28,19,0.88);color:rgba(255,255,255,0.5);backdrop-filter:blur(10px)}
+.lang-btn.active{background:var(--amber);color:var(--dark)}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:0 5%;height:70px;background:transparent;transition:background 0.4s,box-shadow 0.4s}
+nav.scrolled{background:var(--dark);box-shadow:0 2px 24px rgba(0,0,0,0.3)}
+.nav-logo{font-family:'Syne',sans-serif;font-size:1.4rem;font-weight:800;color:var(--white);text-decoration:none;display:flex;align-items:center;gap:10px}
+.nav-logo svg{flex-shrink:0;filter:drop-shadow(0 2px 6px rgba(245,166,35,0.3))}
+@keyframes pulse-dot{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(1.6);opacity:0.5}}
+.nav-links{display:flex;gap:2rem;list-style:none;align-items:center}
+.nav-links a{color:rgba(255,255,255,0.8);text-decoration:none;font-size:0.85rem;font-weight:500;letter-spacing:0.03em;transition:color 0.2s;position:relative}
+.nav-links a::after{content:'';position:absolute;bottom:-4px;left:0;right:0;height:2px;background:var(--amber);transform:scaleX(0);transform-origin:left;transition:transform 0.25s}
+.nav-links a:hover{color:var(--amber)}
+.nav-links a:hover::after{transform:scaleX(1)}
+.nav-wa{background:var(--green-light) !important;color:white !important;padding:0.48rem 1.1rem !important;border-radius:20px;font-weight:600 !important;display:flex;align-items:center;gap:6px;transition:background 0.2s,transform 0.2s !important}
+.nav-wa:hover{background:var(--green) !important;transform:translateY(-2px) !important}
+.nav-wa::after{display:none !important}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:4px}
+.hamburger span{display:block;width:24px;height:2px;background:white;border-radius:2px;transition:all 0.3s}
+.hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.hamburger.open span:nth-child(2){opacity:0}
+.hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+.mobile-menu{display:none;position:fixed;top:70px;left:0;right:0;bottom:0;background:var(--dark);z-index:99;flex-direction:column;align-items:center;justify-content:center;gap:2.5rem}
+.mobile-menu.open{display:flex}
+.mobile-menu a{color:white;text-decoration:none;font-size:1.35rem;font-family:'Syne',sans-serif;font-weight:700;transition:color 0.2s}
+.mobile-menu a:hover{color:var(--amber)}
+
+/* HERO */
+#hero{position:relative;min-height:100vh;display:flex;align-items:center;overflow:hidden;background:var(--dark)}
+.hero-bg{position:absolute;inset:0;background:url('https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=1400&q=60&auto=format&fit=crop') center/cover no-repeat;filter:brightness(0.2) saturate(0.7);transform:scale(1.07);transition:transform 9s ease-out}
+.hero-bg.loaded{transform:scale(1)}
+.hero-overlay{position:absolute;inset:0;background:linear-gradient(135deg,rgba(14,28,19,0.96) 0%,rgba(26,107,60,0.2) 100%)}
+.map-dots{position:absolute;inset:0;pointer-events:none;overflow:hidden}
+.map-dot{position:absolute;width:8px;height:8px;background:var(--amber);border-radius:50%;animation:ping-dot 3.2s ease-in-out infinite}
+.map-dot::before{content:'';position:absolute;inset:-7px;border-radius:50%;border:1.5px solid var(--amber);animation:ring-out 3.2s ease-in-out infinite}
+@keyframes ping-dot{0%,100%{opacity:1;transform:scale(1)}50%{opacity:0.6;transform:scale(1.15)}}
+@keyframes ring-out{0%{opacity:0.6;transform:scale(1)}100%{opacity:0;transform:scale(3.5)}}
+.map-dot:nth-child(1){top:38%;left:56%;animation-delay:0s}
+.map-dot:nth-child(2){top:62%;left:44%;animation-delay:0.9s}
+.map-dot:nth-child(3){top:27%;left:64%;animation-delay:1.7s}
+.map-dot:nth-child(4){top:74%;left:58%;animation-delay:0.5s}
+.hero-content{position:relative;z-index:2;max-width:1200px;margin:0 auto;padding:128px 5% 110px;width:100%}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(245,166,35,0.14);border:1px solid rgba(245,166,35,0.32);border-radius:20px;padding:5px 14px;margin-bottom:1.5rem;opacity:0;transform:translateY(16px);animation:fadeUp 0.65s 0.2s forwards}
+.badge-dot{width:7px;height:7px;background:var(--amber);border-radius:50%;animation:pulse-dot 2s infinite}
+.badge-text{font-size:0.7rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--amber)}
+.hero-title{font-family:'Syne',sans-serif;font-size:clamp(2.8rem,6.5vw,5.5rem);font-weight:800;line-height:1.05;color:var(--white);margin-bottom:1.5rem;max-width:820px;opacity:0;transform:translateY(30px);animation:fadeUp 0.8s 0.4s forwards}
+.hero-title .line2{display:block;color:var(--amber)}
+.hero-sub{font-size:1.05rem;font-weight:300;line-height:1.8;color:rgba(255,255,255,0.66);max-width:510px;margin-bottom:2.5rem;opacity:0;transform:translateY(20px);animation:fadeUp 0.8s 0.6s forwards}
+
+/* SEARCH BAR */
+.hero-search{background:rgba(255,255,255,0.07);backdrop-filter:blur(14px);border:1px solid rgba(255,255,255,0.14);border-radius:14px;padding:1.25rem;max-width:720px;opacity:0;transform:translateY(20px);animation:fadeUp 0.8s 0.8s forwards;display:grid;grid-template-columns:1fr 1fr 1fr auto;gap:0.75rem;align-items:end}
+.sg{display:flex;flex-direction:column;gap:5px}
+.sg label{font-size:0.67rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.48)}
+.sg select,.sg input{background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.2);border-radius:8px;padding:0.65rem 0.9rem;color:white;font-family:'DM Sans',sans-serif;font-size:0.87rem;outline:none;transition:border-color 0.2s,background 0.2s;-webkit-appearance:none;appearance:none}
+.sg select option{background:var(--dark);color:white}
+.sg select:focus,.sg input:focus{border-color:var(--amber);background:rgba(255,255,255,0.14)}
+.sg input::placeholder{color:rgba(255,255,255,0.33)}
+.search-btn{background:var(--amber);color:var(--dark);border:none;border-radius:8px;padding:0.72rem 1.4rem;font-family:'DM Sans',sans-serif;font-size:0.88rem;font-weight:700;cursor:pointer;transition:background 0.2s,transform 0.15s;white-space:nowrap;display:flex;align-items:center;gap:6px}
+.search-btn:hover{background:var(--amber-light);transform:translateY(-2px)}
+.hero-trust{display:flex;gap:1.75rem;margin-top:2rem;flex-wrap:wrap;opacity:0;animation:fadeUp 0.8s 1s forwards}
+.trust-item{display:flex;align-items:center;gap:7px}
+.trust-text{font-size:0.78rem;color:rgba(255,255,255,0.52);font-weight:500}
+.wave-sep{position:absolute;bottom:-1px;left:0;right:0;line-height:0}
+.wave-sep svg{display:block;width:100%}
+
+/* SHARED */
+section{padding:88px 5%}
+.container{max-width:1200px;margin:0 auto}
+.eyebrow{font-size:0.67rem;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:var(--green-light);margin-bottom:0.6rem;display:block}
+.section-title{font-family:'Syne',sans-serif;font-size:clamp(1.85rem,3.8vw,2.9rem);font-weight:800;line-height:1.15;color:var(--dark);margin-bottom:1rem}
+.section-sub{font-size:0.96rem;line-height:1.8;color:var(--slate);max-width:500px}
+
+/* HOW IT WORKS */
+#how{background:var(--dark)}
+.how-steps{display:grid;grid-template-columns:repeat(3,1fr);gap:2rem;margin-top:3.5rem;position:relative}
+.how-steps::before{content:'';position:absolute;top:36px;left:16%;right:16%;height:2px;background:linear-gradient(90deg,var(--green-light),var(--amber));opacity:0.35}
+.how-step{text-align:center;opacity:0;transform:translateY(28px);transition:opacity 0.55s,transform 0.55s}
+.how-step.visible{opacity:1;transform:translateY(0)}
+.step-circle{width:72px;height:72px;border-radius:50%;background:linear-gradient(135deg,var(--green),var(--green-light));color:white;font-size:1.75rem;display:flex;align-items:center;justify-content:center;margin:0 auto 1.5rem;box-shadow:0 0 0 8px rgba(47,175,101,0.14);transition:box-shadow 0.3s,transform 0.3s}
+.how-step:hover .step-circle{box-shadow:0 0 0 16px rgba(245,166,35,0.14);transform:translateY(-4px)}
+.how-step h3{font-family:'Syne',sans-serif;font-size:1.05rem;font-weight:700;color:white;margin-bottom:0.5rem}
+.how-step p{font-size:0.83rem;line-height:1.75;color:rgba(255,255,255,0.48)}
+
+/* SEARCH RESULTS BAR */
+#search-results-bar{
+  display:none;background:var(--dark);color:white;
+  padding:0.9rem 5%;font-size:0.85rem;font-weight:500;
+  position:sticky;top:70px;z-index:90;
+  border-bottom:2px solid var(--amber);
+}
+#search-results-bar.show{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:0.5rem}
+#search-results-bar .clear-btn{background:none;border:1px solid rgba(255,255,255,0.3);color:white;padding:4px 12px;border-radius:20px;font-size:0.75rem;cursor:pointer;transition:background 0.2s}
+#search-results-bar .clear-btn:hover{background:rgba(255,255,255,0.1)}
+
+/* PROPERTIES */
+#properties{background:var(--cream)}
+.properties-header{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:2.5rem;flex-wrap:wrap;gap:1rem}
+.view-all{font-size:0.82rem;font-weight:600;color:var(--green-light);text-decoration:none;border-bottom:1.5px solid var(--green-light);padding-bottom:1px;transition:color 0.2s,border-color 0.2s}
+.view-all:hover{color:var(--amber);border-color:var(--amber)}
+.properties-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:1.5rem}
+.prop-card{background:var(--card-bg);border-radius:14px;overflow:hidden;box-shadow:0 2px 20px rgba(14,28,19,0.07);transition:transform 0.3s,box-shadow 0.3s,opacity 0.35s;opacity:0;transform:translateY(32px)}
+.prop-card.visible{opacity:1;transform:translateY(0)}
+.prop-card.hidden{display:none}
+.prop-card:hover{transform:translateY(-8px);box-shadow:0 20px 50px rgba(14,28,19,0.15)}
+.prop-img-wrap{position:relative;overflow:hidden;height:215px;background:#c6d5cc}
+.prop-img{width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.6s}
+.prop-card:hover .prop-img{transform:scale(1.06)}
+.prop-tag{position:absolute;top:12px;left:12px;background:var(--amber);color:var(--dark);font-size:0.63rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;padding:4px 10px;border-radius:4px}
+.verified-badge{position:absolute;top:12px;right:12px;background:var(--green);color:white;font-size:0.62rem;font-weight:600;padding:4px 8px;border-radius:4px;display:flex;align-items:center;gap:3px}
+.prop-body{padding:1.2rem 1.35rem 0.25rem}
+.prop-price{font-family:'Syne',sans-serif;font-size:1.15rem;font-weight:800;color:var(--green);margin-bottom:0.2rem}
+.prop-price span{font-family:'DM Sans',sans-serif;font-size:0.75rem;font-weight:400;color:var(--muted)}
+.prop-title{font-size:0.93rem;font-weight:600;color:var(--dark);margin-bottom:0.3rem}
+.prop-location{font-size:0.78rem;color:var(--muted);display:flex;align-items:center;gap:4px;margin-bottom:0.9rem}
+.prop-meta{display:flex;gap:0.9rem;padding:0.9rem 0;border-top:1px solid var(--border)}
+.prop-meta span{font-size:0.77rem;color:var(--slate);display:flex;align-items:center;gap:4px}
+.prop-wa-btn{display:flex;align-items:center;justify-content:center;gap:7px;margin:0 1.35rem 1.25rem;background:var(--green-light);color:white;border-radius:8px;padding:0.62rem;text-align:center;text-decoration:none;font-size:0.82rem;font-weight:600;transition:background 0.2s,transform 0.15s}
+.prop-wa-btn:hover{background:var(--green);transform:translateY(-1px)}
+.no-results{display:none;text-align:center;padding:3rem;color:var(--slate);grid-column:1/-1}
+.no-results.show{display:block}
+.no-results h3{font-family:'Syne',sans-serif;font-size:1.2rem;margin-bottom:0.5rem;color:var(--dark)}
+
+/* WHY */
+#why{background:white}
+.why-grid{display:grid;grid-template-columns:1.2fr 1fr;gap:5rem;align-items:center}
+.why-image-side{position:relative}
+.why-img-main{width:100%;height:460px;object-fit:cover;border-radius:16px;display:block;background:#c6d5cc}
+.why-img-float{position:absolute;bottom:-24px;right:-24px;width:190px;height:145px;object-fit:cover;border-radius:12px;border:4px solid white;box-shadow:0 8px 32px rgba(0,0,0,0.14);background:#c6d5cc}
+.why-accent-bar{position:absolute;top:32px;left:-14px;width:5px;height:110px;background:linear-gradient(180deg,var(--amber),var(--green-light));border-radius:3px}
+.why-stat{position:absolute;top:24px;right:24px;background:var(--dark);color:white;padding:1rem 1.25rem;border-radius:10px;text-align:center}
+.why-stat-num{font-family:'Syne',sans-serif;font-size:1.8rem;font-weight:800;color:var(--amber);line-height:1}
+.why-stat-label{font-size:0.66rem;color:rgba(255,255,255,0.5);text-transform:uppercase;letter-spacing:0.08em;margin-top:3px}
+.why-pillars{display:grid;grid-template-columns:1fr 1fr;gap:1.1rem;margin-top:2.25rem}
+.pillar-card{background:var(--cream);border-radius:10px;padding:1.2rem;border:1px solid var(--border);opacity:0;transform:translateX(22px);transition:opacity 0.5s,transform 0.5s,border-color 0.2s}
+.pillar-card.visible{opacity:1;transform:translateX(0)}
+.pillar-card:hover{border-color:var(--green-light)}
+.pillar-icon{font-size:1.45rem;margin-bottom:0.55rem;display:block}
+.pillar-card h4{font-family:'Syne',sans-serif;font-size:0.87rem;font-weight:700;color:var(--dark);margin-bottom:0.3rem}
+.pillar-card p{font-size:0.77rem;line-height:1.65;color:var(--slate)}
+
+/* NEIGHBOURHOODS */
+#neighbourhoods{background:var(--cream)}
+.neigh-header{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;margin-bottom:1.5rem}
+.neigh-arrows{display:flex;gap:0.5rem}
+.neigh-arrow{width:38px;height:38px;border-radius:50%;background:var(--dark);color:white;border:none;font-size:1.1rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background 0.2s,transform 0.15s;flex-shrink:0}
+.neigh-arrow:hover{background:var(--green);transform:scale(1.08)}
+.neigh-scroll-wrap{position:relative}
+.neigh-scroll{display:flex;gap:0.9rem;margin-top:0;overflow-x:auto;padding-bottom:6px;scrollbar-width:none;-ms-overflow-style:none;scroll-behavior:smooth}
+.neigh-scroll::-webkit-scrollbar{display:none}
+.neigh-pill{flex-shrink:0;background:white;border:1.5px solid var(--border);border-radius:100px;padding:0.6rem 1.2rem;font-size:0.82rem;font-weight:500;color:var(--slate);cursor:pointer;transition:all 0.22s;white-space:nowrap;display:flex;align-items:center;gap:6px}
+.neigh-pill:hover,.neigh-pill.active{background:var(--green);color:white;border-color:var(--green)}
+.neigh-count{font-size:0.69rem;background:var(--border);color:var(--slate);padding:1px 7px;border-radius:10px;transition:all 0.2s}
+.neigh-pill:hover .neigh-count,.neigh-pill.active .neigh-count{background:rgba(255,255,255,0.25);color:white}
+
+/* Neighbourhood property results */
+.neigh-results{margin-top:2rem;display:none}
+.neigh-results.show{display:block}
+.neigh-results-title{font-family:'Syne',sans-serif;font-size:1rem;font-weight:700;color:var(--dark);margin-bottom:1.2rem}
+.neigh-results-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:1.2rem}
+.neigh-card{background:white;border-radius:12px;overflow:hidden;box-shadow:0 2px 16px rgba(14,28,19,0.07);transition:transform 0.25s,box-shadow 0.25s;animation:fadeUp 0.4s both}
+.neigh-card:hover{transform:translateY(-5px);box-shadow:0 12px 36px rgba(14,28,19,0.13)}
+.neigh-card-img{width:100%;height:170px;object-fit:cover;display:block}
+.neigh-card-body{padding:1rem 1.1rem 0.5rem}
+.neigh-card-price{font-family:'Syne',sans-serif;font-size:1rem;font-weight:800;color:var(--green);margin-bottom:0.2rem}
+.neigh-card-title{font-size:0.85rem;font-weight:600;color:var(--dark);margin-bottom:0.2rem}
+.neigh-card-loc{font-size:0.75rem;color:var(--muted);margin-bottom:0.7rem}
+.neigh-card-wa{display:flex;align-items:center;justify-content:center;gap:6px;margin:0 1rem 0.85rem;background:var(--green-light);color:white;border-radius:7px;padding:0.52rem;text-decoration:none;font-size:0.78rem;font-weight:600;transition:background 0.2s}
+.neigh-card-wa:hover{background:var(--green)}
+
+/* TESTIMONIALS */
+#testimonials{background:var(--dark)}
+.testimonials-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem;margin-top:3rem}
+.tcard{background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.09);border-radius:12px;padding:1.75rem;opacity:0;transform:translateY(22px);transition:opacity 0.5s,transform 0.5s,border-color 0.2s}
+.tcard.visible{opacity:1;transform:translateY(0)}
+.tcard:hover{border-color:rgba(245,166,35,0.38)}
+.tcard-stars{color:var(--amber);font-size:0.78rem;margin-bottom:0.8rem;letter-spacing:2px}
+.tcard p{font-size:0.87rem;line-height:1.75;color:rgba(255,255,255,0.65);margin-bottom:1.4rem}
+.tcard-author{display:flex;align-items:center;gap:0.75rem}
+.tcard-avatar{width:38px;height:38px;border-radius:50%;background:linear-gradient(135deg,var(--green),var(--green-light));color:white;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:0.8rem;flex-shrink:0}
+.tcard-name{font-size:0.82rem;font-weight:600;color:white}
+.tcard-role{font-size:0.72rem;color:rgba(255,255,255,0.38)}
+
+/* CTA BAND */
+#cta-band{background:linear-gradient(135deg,var(--green) 0%,var(--green-mid) 100%);padding:72px 5%;text-align:center;position:relative;overflow:hidden}
+.cta-circles{position:absolute;inset:0;pointer-events:none}
+.cta-circle{position:absolute;border-radius:50%;border:1px solid rgba(255,255,255,0.12);animation:expand-circle 6s ease-in-out infinite}
+.cta-circle:nth-child(1){width:320px;height:320px;top:-110px;right:-60px}
+.cta-circle:nth-child(2){width:520px;height:520px;top:-210px;right:-160px;animation-delay:1.5s}
+.cta-circle:nth-child(3){width:220px;height:220px;bottom:-90px;left:-70px;animation-delay:3s}
+@keyframes expand-circle{0%,100%{transform:scale(1);opacity:0.4}50%{transform:scale(1.08);opacity:0.14}}
+#cta-band h2{font-family:'Syne',sans-serif;font-size:clamp(1.9rem,4vw,3rem);font-weight:800;color:white;margin-bottom:0.75rem;position:relative;z-index:1}
+#cta-band p{font-size:0.96rem;color:rgba(255,255,255,0.7);margin-bottom:2rem;position:relative;z-index:1}
+.wa-big-btn{display:inline-flex;align-items:center;gap:10px;background:white;color:var(--green);padding:1rem 2.25rem;border-radius:50px;font-family:'DM Sans',sans-serif;font-size:0.95rem;font-weight:700;text-decoration:none;transition:transform 0.2s,box-shadow 0.2s;position:relative;z-index:1}
+.wa-big-btn:hover{transform:translateY(-3px);box-shadow:0 14px 40px rgba(0,0,0,0.2)}
+.wa-icon{font-size:1.3rem}
+
+/* FOOTER */
+footer{background:#060F0A;color:rgba(255,255,255,0.48);padding:4rem 5% 2rem}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:3rem;margin-bottom:3rem}
+.footer-logo{font-family:'Syne',sans-serif;font-size:1.45rem;font-weight:800;color:white;margin-bottom:1rem;display:flex;align-items:center;gap:7px}
+.footer-logo .dot{width:8px;height:8px;background:var(--amber);border-radius:50%;display:inline-block}
+.footer-brand p{font-size:0.82rem;line-height:1.75;color:rgba(255,255,255,0.38);max-width:280px}
+.footer-col h5{font-size:0.67rem;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:var(--amber);margin-bottom:1.25rem}
+.footer-col a{display:block;font-size:0.82rem;color:rgba(255,255,255,0.42);text-decoration:none;margin-bottom:0.6rem;transition:color 0.2s}
+.footer-col a:hover{color:var(--green-light)}
+.footer-bottom{border-top:1px solid rgba(255,255,255,0.07);padding-top:1.5rem;display:flex;justify-content:space-between;align-items:center;font-size:0.74rem;flex-wrap:wrap;gap:0.5rem}
+
+/* ANIMATIONS */
+@keyframes fadeUp{0%{opacity:0;transform:translateY(22px)}to{opacity:1;transform:translateY(0)}}
+.reveal{opacity:0;transform:translateY(28px);transition:opacity 0.65s ease,transform 0.65s ease}
+.reveal.visible{opacity:1;transform:translateY(0)}
+
+/* FLOATING ANIMATIONS — continuous */
+@keyframes float-card{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+@keyframes shimmer{0%{background-position:-400px 0}100%{background-position:400px 0}}
+.how-step.visible .step-circle{animation:float-card 3.5s ease-in-out infinite}
+.how-step:nth-child(2).visible .step-circle{animation-delay:0.5s}
+.how-step:nth-child(3).visible .step-circle{animation-delay:1s}
+
+/* SCROLL TOP */
+#scrollTop{position:fixed;bottom:28px;right:28px;width:44px;height:44px;background:var(--green);color:white;border:none;border-radius:50%;cursor:pointer;font-size:1.2rem;display:flex;align-items:center;justify-content:center;opacity:0;transform:translateY(10px);transition:opacity 0.3s,transform 0.3s;z-index:50;box-shadow:0 4px 16px rgba(0,0,0,0.25)}
+#scrollTop.show{opacity:1;transform:translateY(0)}
+#scrollTop:hover{background:var(--green-light)}
+
+/* RESPONSIVE */
+@media(max-width:1000px){.why-grid{grid-template-columns:1fr;gap:2.5rem}.why-img-float{display:none}.testimonials-grid{grid-template-columns:1fr 1fr}.footer-grid{grid-template-columns:1fr 1fr}.how-steps::before{display:none}.hero-search{grid-template-columns:1fr 1fr}.search-btn{grid-column:span 2}}
+@media(max-width:680px){.nav-links{display:none}.hamburger{display:flex}.footer-grid{grid-template-columns:1fr}.how-steps{grid-template-columns:1fr}.testimonials-grid{grid-template-columns:1fr}.why-pillars{grid-template-columns:1fr}section{padding:66px 5%}.hero-search{grid-template-columns:1fr}.search-btn{grid-column:auto}#lang-toggle{top:78px;right:12px}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:0.01ms !important;transition-duration:0.01ms !important}}
+
+/* BILINGUAL */
+.fr{display:none}
+body.lang-fr .en{display:none}
+body.lang-fr .fr{display:inline}
+body.lang-fr p.fr,body.lang-fr h1.fr,body.lang-fr h2.fr,body.lang-fr h3.fr,body.lang-fr div.fr,body.lang-fr span.fr{display:block}
+body.lang-fr h4.fr{display:block}
+</style>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+</head>
+<body>
+<script>window.scrollTo(0,0);</script>
+
+<!-- SEARCH RESULTS NOTIFICATION BAR -->
+<div id="search-results-bar">
+  <span id="search-results-text"></span>
+  <button class="clear-btn" id="clearSearchBtn">✕ Clear filter</button>
+</div>
+
+<!-- LANG TOGGLE -->
+<div id="lang-toggle">
+  <button class="lang-btn active" data-lang="en">EN</button>
+  <button class="lang-btn" data-lang="fr">FR</button>
+</div>
+
+<!-- NAV -->
+<nav id="navbar">
+  <a href="#hero" class="nav-logo">
+    <svg width="42" height="42" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0;filter:drop-shadow(0 2px 8px rgba(245,166,35,0.35))">
+        <polygon points="50,2 93,26 93,74 50,98 7,74 7,26" fill="#1A6B3C" stroke="#F5A623" stroke-width="5"/>
+        <polygon points="50,11 85,30 85,70 50,89 15,70 15,30" fill="none" stroke="rgba(245,166,35,0.22)" stroke-width="1.5"/>
+        <text x="50" y="57" text-anchor="middle" dominant-baseline="middle" font-family="Arial Black,sans-serif" font-weight="900" font-size="30" fill="#F5A623" letter-spacing="-1">SE</text>
+        <circle cx="50" cy="80" r="3.5" fill="#F5A623"/>
+      </svg>
+    <span style="display:flex;flex-direction:column;line-height:1.15;gap:1px">
+        <span style="font-family:'Syne',sans-serif;font-size:1.05rem;font-weight:800;color:white;letter-spacing:0.06em">SAFE ENGINE</span>
+        <span style="font-size:0.45rem;font-weight:700;letter-spacing:0.18em;color:rgba(255,255,255,0.4);text-transform:uppercase">Civil · Infrastructure · Real Estate</span>
+      </span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#how"><span class="en">How It Works</span><span class="fr">Comment ça marche</span></a></li>
+    <li><a href="#properties"><span class="en">Properties</span><span class="fr">Propriétés</span></a></li>
+    <li><a href="#why"><span class="en">About</span><span class="fr">À Propos</span></a></li>
+    <li><a href="#neighbourhoods"><span class="en">Areas</span><span class="fr">Quartiers</span></a></li>
+    <!-- UPDATE YOUR WHATSAPP NUMBER BELOW (replace 237676913599) -->
+    <li><a href="https://wa.me/237676913599?text=Hello%20Safe%20Engine%2C%20I%27m%20looking%20for%20a%20rental%20in%20Yaound%C3%A9" target="_blank" class="nav-wa">📱 WhatsApp</a></li>
+  </ul>
+  <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#how"><span class="en">How It Works</span><span class="fr">Comment ça marche</span></a>
+  <a href="#properties"><span class="en">Properties</span><span class="fr">Propriétés</span></a>
+  <a href="#why"><span class="en">About</span><span class="fr">À Propos</span></a>
+  <a href="#neighbourhoods"><span class="en">Areas</span><span class="fr">Quartiers</span></a>
+  <a href="https://wa.me/237676913599" target="_blank">📱 WhatsApp</a>
+</div>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg" id="heroBg"></div>
+  <div class="hero-overlay"></div>
+  <div class="map-dots">
+    <div class="map-dot"></div><div class="map-dot"></div>
+    <div class="map-dot"></div><div class="map-dot"></div>
+  </div>
+  <div class="hero-content">
+    <div class="hero-badge">
+      <span class="badge-dot"></span>
+      <span class="badge-text en">Yaoundé's Trusted Rental Platform</span>
+      <span class="badge-text fr">La plateforme de location de confiance à Yaoundé</span>
+    </div>
+    <!-- Hero Logo — same as navbar, just larger -->
+    <div style="margin-bottom:1.75rem;opacity:0;animation:fadeUp 0.7s 0.1s forwards;display:flex;align-items:center;gap:12px">
+      <svg width="56" height="56" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0;filter:drop-shadow(0 4px 16px rgba(245,166,35,0.4))">
+        <polygon points="50,2 93,26 93,74 50,98 7,74 7,26" fill="#1A6B3C" stroke="#F5A623" stroke-width="5"/>
+        <polygon points="50,11 85,30 85,70 50,89 15,70 15,30" fill="none" stroke="rgba(245,166,35,0.22)" stroke-width="1.5"/>
+        <text x="50" y="57" text-anchor="middle" dominant-baseline="middle" font-family="Arial Black,sans-serif" font-weight="900" font-size="30" fill="#F5A623" letter-spacing="-1">SE</text>
+        <circle cx="50" cy="80" r="3.5" fill="#F5A623"/>
+      </svg>
+      <span style="display:flex;flex-direction:column;line-height:1.15;gap:2px">
+        <span style="font-family:'Syne',sans-serif;font-size:1.4rem;font-weight:800;color:white;letter-spacing:0.06em">SAFE ENGINE</span>
+        <span style="font-size:0.52rem;font-weight:700;letter-spacing:0.18em;color:rgba(255,255,255,0.4);text-transform:uppercase">Civil · Infrastructure · Real Estate</span>
+      </span>
+    </div>
+    <h1 class="hero-title">
+      <span class="en">Find Your <span class="line2">Home in Yaoundé</span></span>
+      <span class="fr">Trouvez Votre <span class="line2">Maison à Yaoundé</span></span>
+    </h1>
+    <p class="hero-sub en">Safe Engine personally verifies every listing. No fraud, no surprises — just honest, affordable rentals across Yaoundé, with one-tap WhatsApp contact.</p>
+    <p class="hero-sub fr">Safe Engine vérifie personnellement chaque annonce. Pas de fraude, pas de surprises — des locations honnêtes et abordables à Yaoundé, avec contact WhatsApp en un clic.</p>
+
+    <div class="hero-search" id="heroSearch">
+      <div class="sg">
+        <label class="en">Neighbourhood</label>
+        <label class="fr">Quartier</label>
+        <select id="filterNeighbourhood">
+          <option value="">All Quartiers</option>
+          <option value="Bastos">Bastos</option>
+          <option value="Biyem-Assi">Biyem-Assi</option>
+          <option value="Essos">Essos</option>
+          <option value="Melen">Melen</option>
+          <option value="Mvog-Mbi">Mvog-Mbi</option>
+          <option value="Ngousso">Ngousso</option>
+          <option value="Omnisports">Omnisports</option>
+          <option value="Santa Barbara">Santa Barbara</option>
+        </select>
+      </div>
+      <div class="sg">
+        <label class="en">Property Type</label>
+        <label class="fr">Type de bien</label>
+        <select id="filterType">
+          <option value="">Any Type</option>
+          <option value="studio">Studio</option>
+          <option value="apartment">Apartment</option>
+          <option value="villa">Villa</option>
+          <option value="room">Room</option>
+          <option value="guesthouse">Guest house</option>
+          <option value="family">Family home</option>
+        </select>
+      </div>
+      <div class="sg">
+        <label class="en">Max Price (XAF/mo)</label>
+        <label class="fr">Prix max (XAF/mois)</label>
+        <input type="number" id="filterPrice" placeholder="150 000" step="5000">
+      </div>
+      <button class="search-btn" id="searchBtn">🔍 <span class="en">Search</span><span class="fr">Chercher</span></button>
+    </div>
+
+    <div class="hero-trust">
+      <div class="trust-item"><span>✅</span><span class="trust-text en">Every listing verified</span><span class="trust-text fr">Annonces vérifiées</span></div>
+      <div class="trust-item"><span>🔒</span><span class="trust-text en">Zero fraud</span><span class="trust-text fr">Zéro fraude</span></div>
+      <div class="trust-item"><span>📱</span><span class="trust-text en">WhatsApp contact</span><span class="trust-text fr">Contact WhatsApp</span></div>
+      <div class="trust-item"><span>🇨🇲</span><span class="trust-text en">Built for Yaoundé</span><span class="trust-text fr">Fait pour Yaoundé</span></div>
+    </div>
+  </div>
+  <div class="wave-sep">
+    <svg viewBox="0 0 1440 72" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+      <path d="M0,42 C360,82 1080,2 1440,42 L1440,72 L0,72 Z" fill="#F8F5EF"/>
+    </svg>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section id="how">
+  <div class="container">
+    <div class="reveal" style="text-align:center">
+      <span class="eyebrow en">Simple Process</span>
+      <span class="eyebrow fr">Processus Simple</span>
+      <h2 class="section-title en" style="color:white">How It Works</h2>
+      <h2 class="section-title fr" style="color:white">Comment Ça Marche</h2>
+      <p class="section-sub en" style="margin:0 auto;color:rgba(255,255,255,0.5)">Three simple steps from search to moving in.</p>
+      <p class="section-sub fr" style="margin:0 auto;color:rgba(255,255,255,0.5)">Trois étapes simples, de la recherche à l'emménagement.</p>
+    </div>
+    <div class="how-steps">
+      <div class="how-step">
+        <div class="step-circle">🔍</div>
+        <h3 class="en">Search &amp; Browse</h3>
+        <h3 class="fr">Chercher &amp; Parcourir</h3>
+        <p class="en">Filter by neighbourhood, price, and type. Every listing is personally verified — no fraudulent properties, ever.</p>
+        <p class="fr">Filtrez par quartier, prix et type. Chaque annonce est vérifiée personnellement — aucune propriété frauduleuse.</p>
+      </div>
+      <div class="how-step">
+        <div class="step-circle">💬</div>
+        <h3 class="en">Contact via WhatsApp</h3>
+        <h3 class="fr">Contacter via WhatsApp</h3>
+        <p class="en">Found something you like? Tap the WhatsApp button. Our team responds fast and arranges your viewing.</p>
+        <p class="fr">Vous aimez une annonce ? Appuyez sur WhatsApp. Notre équipe répond vite et organise votre visite.</p>
+      </div>
+      <div class="how-step">
+        <div class="step-circle">🏠</div>
+        <h3 class="en">Move In</h3>
+        <h3 class="fr">Emménager</h3>
+        <p class="en">Deal done, keys in hand. Safe Engine earns a small commission only on successful rentals — no upfront fees.</p>
+        <p class="fr">Affaire conclue, clés en main. Safe Engine perçoit une commission uniquement sur les locations réussies.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURED PROPERTIES -->
+<section id="properties">
+  <div class="container">
+    <div class="properties-header reveal">
+      <div>
+        <span class="eyebrow en">Featured Listings</span>
+        <span class="eyebrow fr">Annonces en Vedette</span>
+        <h2 class="section-title en">Quality Rentals in Yaoundé</h2>
+        <h2 class="section-title fr">Locations de Qualité à Yaoundé</h2>
+      </div>
+      <a href="#" class="view-all en">View all listings →</a>
+      <a href="#" class="view-all fr">Voir toutes les annonces →</a>
+    </div>
+    <div class="properties-grid" id="propertiesGrid">
+
+      <!-- Card 1: Bastos Apartment -->
+      <div class="prop-card" data-neighbourhood="Bastos" data-type="apartment" data-price="75000">
+        <div class="prop-img-wrap">
+          <span class="prop-tag en">Available</span><span class="prop-tag fr">Disponible</span>
+          <span class="verified-badge">✓ <span class="en">Verified</span><span class="fr">Vérifié</span></span>
+          <img class="prop-img" src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=600&q=55&auto=format&fit=crop" alt="Apartment Bastos Yaoundé" loading="lazy">
+        </div>
+        <div class="prop-body">
+          <div class="prop-price">75 000 XAF <span class="en">/ month</span><span class="fr">/ mois</span></div>
+          <div class="prop-title en">Modern 2-Bedroom Apartment</div>
+          <div class="prop-title fr">Appartement 2 Chambres Moderne</div>
+          <div class="prop-location">📍 Bastos, Yaoundé</div>
+          <div class="prop-meta">
+            <span>🛏 2 <span class="en">Beds</span><span class="fr">Ch.</span></span>
+            <span>🚿 1 <span class="en">Bath</span><span class="fr">SdB</span></span>
+            <span>📐 65 m²</span>
+          </div>
+        </div>
+        <!-- UPDATE WHATSAPP NUMBER in href below -->
+        <a href="https://wa.me/237676913599?text=Hello%2C%20I%27m%20interested%20in%20REF-001%20(Bastos%20apartment)" target="_blank" class="prop-wa-btn">
+          📱 <span class="en">Contact on WhatsApp</span><span class="fr">Contacter sur WhatsApp</span>
+        </a>
+      </div>
+
+      <!-- Card 2: Biyem-Assi Studio -->
+      <div class="prop-card" data-neighbourhood="Biyem-Assi" data-type="studio" data-price="35000">
+        <div class="prop-img-wrap">
+          <span class="prop-tag en">Available</span><span class="prop-tag fr">Disponible</span>
+          <span class="verified-badge">✓ <span class="en">Verified</span><span class="fr">Vérifié</span></span>
+          <img class="prop-img" src="https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=600&q=55&auto=format&fit=crop" alt="Studio Biyem-Assi Yaoundé" loading="lazy">
+        </div>
+        <div class="prop-body">
+          <div class="prop-price">35 000 XAF <span class="en">/ month</span><span class="fr">/ mois</span></div>
+          <div class="prop-title en">Bright Studio — City Access</div>
+          <div class="prop-title fr">Studio Lumineux — Centre-Ville</div>
+          <div class="prop-location">📍 Biyem-Assi, Yaoundé</div>
+          <div class="prop-meta">
+            <span>🛏 1 <span class="en">Bed</span><span class="fr">Ch.</span></span>
+            <span>🚿 1 <span class="en">Bath</span><span class="fr">SdB</span></span>
+            <span>📐 32 m²</span>
+          </div>
+        </div>
+        <a href="https://wa.me/237676913599?text=Hello%2C%20I%27m%20interested%20in%20REF-002%20(Biyem-Assi%20studio)" target="_blank" class="prop-wa-btn">
+          📱 <span class="en">Contact on WhatsApp</span><span class="fr">Contacter sur WhatsApp</span>
+        </a>
+      </div>
+
+      <!-- Card 3: Essos Family Home -->
+      <div class="prop-card" data-neighbourhood="Essos" data-type="family" data-price="110000">
+        <div class="prop-img-wrap">
+          <span class="prop-tag en">Available</span><span class="prop-tag fr">Disponible</span>
+          <span class="verified-badge">✓ <span class="en">Verified</span><span class="fr">Vérifié</span></span>
+          <img class="prop-img" src="https://images.unsplash.com/photo-1493809842364-78817add7ffb?w=600&q=55&auto=format&fit=crop" alt="Family home Essos" loading="lazy">
+        </div>
+        <div class="prop-body">
+          <div class="prop-price">110 000 XAF <span class="en">/ month</span><span class="fr">/ mois</span></div>
+          <div class="prop-title en">Spacious 3-Bed Family Home</div>
+          <div class="prop-title fr">Grande Maison Familiale 3 Ch.</div>
+          <div class="prop-location">📍 Essos, Yaoundé</div>
+          <div class="prop-meta">
+            <span>🛏 3 <span class="en">Beds</span><span class="fr">Ch.</span></span>
+            <span>🚿 2 <span class="en">Baths</span><span class="fr">SdB</span></span>
+            <span>📐 120 m²</span>
+          </div>
+        </div>
+        <a href="https://wa.me/237676913599?text=Hello%2C%20I%27m%20interested%20in%20REF-003%20(Essos%20family%20home)" target="_blank" class="prop-wa-btn">
+          📱 <span class="en">Contact on WhatsApp</span><span class="fr">Contacter sur WhatsApp</span>
+        </a>
+      </div>
+
+      <!-- Card 4: Melen Guest House -->
+      <div class="prop-card" data-neighbourhood="Melen" data-type="guesthouse" data-price="50000">
+        <div class="prop-img-wrap">
+          <span class="prop-tag en">Available</span><span class="prop-tag fr">Disponible</span>
+          <span class="verified-badge">✓ <span class="en">Verified</span><span class="fr">Vérifié</span></span>
+          <img class="prop-img" src="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=600&q=55&auto=format&fit=crop" alt="Guest house Melen" loading="lazy">
+        </div>
+        <div class="prop-body">
+          <div class="prop-price">50 000 XAF <span class="en">/ month</span><span class="fr">/ mois</span></div>
+          <div class="prop-title en">Guest House with Courtyard</div>
+          <div class="prop-title fr">Maison d'Hôtes avec Cour</div>
+          <div class="prop-location">📍 Melen, Yaoundé</div>
+          <div class="prop-meta">
+            <span>🛏 2 <span class="en">Beds</span><span class="fr">Ch.</span></span>
+            <span>🚿 1 <span class="en">Bath</span><span class="fr">SdB</span></span>
+            <span>📐 58 m²</span>
+          </div>
+        </div>
+        <a href="https://wa.me/237676913599?text=Hello%2C%20I%27m%20interested%20in%20REF-004%20(Melen%20guest%20house)" target="_blank" class="prop-wa-btn">
+          📱 <span class="en">Contact on WhatsApp</span><span class="fr">Contacter sur WhatsApp</span>
+        </a>
+      </div>
+
+      <!-- Card 5: Ngousso Room -->
+      <div class="prop-card" data-neighbourhood="Ngousso" data-type="room" data-price="20000">
+        <div class="prop-img-wrap">
+          <span class="prop-tag en">Available</span><span class="prop-tag fr">Disponible</span>
+          <span class="verified-badge">✓ <span class="en">Verified</span><span class="fr">Vérifié</span></span>
+          <img class="prop-img" src="https://images.unsplash.com/photo-1484154218962-a197022b5858?w=600&q=55&auto=format&fit=crop" alt="Furnished room Ngousso" loading="lazy">
+        </div>
+        <div class="prop-body">
+          <div class="prop-price">20 000 XAF <span class="en">/ month</span><span class="fr">/ mois</span></div>
+          <div class="prop-title en">Furnished Room — Shared Compound</div>
+          <div class="prop-title fr">Chambre Meublée — Concession Partagée</div>
+          <div class="prop-location">📍 Ngousso, Yaoundé</div>
+          <div class="prop-meta">
+            <span>🛏 1 <span class="en">Room</span><span class="fr">Chambre</span></span>
+            <span>🚿 <span class="en">Shared</span><span class="fr">Partagée</span></span>
+            <span>📐 18 m²</span>
+          </div>
+        </div>
+        <a href="https://wa.me/237676913599?text=Hello%2C%20I%27m%20interested%20in%20REF-005%20(Ngousso%20room)" target="_blank" class="prop-wa-btn">
+          📱 <span class="en">Contact on WhatsApp</span><span class="fr">Contacter sur WhatsApp</span>
+        </a>
+      </div>
+
+      <!-- Card 6: Omnisports Villa -->
+      <div class="prop-card" data-neighbourhood="Omnisports" data-type="villa" data-price="180000">
+        <div class="prop-img-wrap">
+          <span class="prop-tag en">Available</span><span class="prop-tag fr">Disponible</span>
+          <span class="verified-badge">✓ <span class="en">Verified</span><span class="fr">Vérifié</span></span>
+          <img class="prop-img" src="https://images.unsplash.com/photo-1416331108676-a22ccb276e35?w=600&q=55&auto=format&fit=crop" alt="Executive villa Omnisports" loading="lazy">
+        </div>
+        <div class="prop-body">
+          <div class="prop-price">180 000 XAF <span class="en">/ month</span><span class="fr">/ mois</span></div>
+          <div class="prop-title en">Executive Villa with Garden</div>
+          <div class="prop-title fr">Villa Exécutive avec Jardin</div>
+          <div class="prop-location">📍 Omnisports, Yaoundé</div>
+          <div class="prop-meta">
+            <span>🛏 4 <span class="en">Beds</span><span class="fr">Ch.</span></span>
+            <span>🚿 3 <span class="en">Baths</span><span class="fr">SdB</span></span>
+            <span>📐 220 m²</span>
+          </div>
+        </div>
+        <a href="https://wa.me/237676913599?text=Hello%2C%20I%27m%20interested%20in%20REF-006%20(Omnisports%20villa)" target="_blank" class="prop-wa-btn">
+          📱 <span class="en">Contact on WhatsApp</span><span class="fr">Contacter sur WhatsApp</span>
+        </a>
+      </div>
+
+      <!-- Card 7: Mvog-Mbi Apartment -->
+      <div class="prop-card" data-neighbourhood="Mvog-Mbi" data-type="apartment" data-price="45000">
+        <div class="prop-img-wrap">
+          <span class="prop-tag en">Available</span><span class="prop-tag fr">Disponible</span>
+          <span class="verified-badge">✓ <span class="en">Verified</span><span class="fr">Vérifié</span></span>
+          <img class="prop-img" src="https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?w=600&q=55&auto=format&fit=crop" alt="Apartment Mvog-Mbi" loading="lazy">
+        </div>
+        <div class="prop-body">
+          <div class="prop-price">45 000 XAF <span class="en">/ month</span><span class="fr">/ mois</span></div>
+          <div class="prop-title en">Cosy 1-Bed Apartment</div>
+          <div class="prop-title fr">Appartement 1 Chambre Cosy</div>
+          <div class="prop-location">📍 Mvog-Mbi, Yaoundé</div>
+          <div class="prop-meta">
+            <span>🛏 1 <span class="en">Bed</span><span class="fr">Ch.</span></span>
+            <span>🚿 1 <span class="en">Bath</span><span class="fr">SdB</span></span>
+            <span>📐 42 m²</span>
+          </div>
+        </div>
+        <a href="https://wa.me/237676913599?text=Hello%2C%20I%27m%20interested%20in%20REF-007%20(Mvog-Mbi%20apartment)" target="_blank" class="prop-wa-btn">
+          📱 <span class="en">Contact on WhatsApp</span><span class="fr">Contacter sur WhatsApp</span>
+        </a>
+      </div>
+
+      <!-- Card 8: Santa Barbara Villa -->
+      <div class="prop-card" data-neighbourhood="Santa Barbara" data-type="villa" data-price="250000">
+        <div class="prop-img-wrap">
+          <span class="prop-tag en">Available</span><span class="prop-tag fr">Disponible</span>
+          <span class="verified-badge">✓ <span class="en">Verified</span><span class="fr">Vérifié</span></span>
+          <img class="prop-img" src="https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?w=600&q=55&auto=format&fit=crop" alt="Villa Santa Barbara" loading="lazy">
+        </div>
+        <div class="prop-body">
+          <div class="prop-price">250 000 XAF <span class="en">/ month</span><span class="fr">/ mois</span></div>
+          <div class="prop-title en">Luxury Villa — Gated Estate</div>
+          <div class="prop-title fr">Villa de Luxe — Résidence Sécurisée</div>
+          <div class="prop-location">📍 Santa Barbara, Yaoundé</div>
+          <div class="prop-meta">
+            <span>🛏 5 <span class="en">Beds</span><span class="fr">Ch.</span></span>
+            <span>🚿 4 <span class="en">Baths</span><span class="fr">SdB</span></span>
+            <span>📐 310 m²</span>
+          </div>
+        </div>
+        <a href="https://wa.me/237676913599?text=Hello%2C%20I%27m%20interested%20in%20REF-008%20(Santa%20Barbara%20villa)" target="_blank" class="prop-wa-btn">
+          📱 <span class="en">Contact on WhatsApp</span><span class="fr">Contacter sur WhatsApp</span>
+        </a>
+      </div>
+
+      <div class="no-results" id="noResults">
+        <h3 class="en">No properties found</h3>
+        <h3 class="fr">Aucune propriété trouvée</h3>
+        <p class="en">Try adjusting your filters or <a href="https://wa.me/237676913599" target="_blank" style="color:var(--green-light)">contact us on WhatsApp</a> for more options.</p>
+        <p class="fr">Modifiez vos filtres ou <a href="https://wa.me/237676913599" target="_blank" style="color:var(--green-light)">contactez-nous sur WhatsApp</a> pour plus d'options.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- WHY CHOOSE US -->
+<section id="why">
+  <div class="container">
+    <div class="why-grid">
+      <div class="why-image-side reveal">
+        <div class="why-accent-bar"></div>
+        <img class="why-img-main" src="https://images.unsplash.com/photo-1570129477492-45c003edd2be?w=800&q=55&auto=format&fit=crop" alt="A verified home in Yaoundé" loading="lazy">
+        <img class="why-img-float" src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=400&q=50&auto=format&fit=crop" alt="Safe Engine verified property" loading="lazy">
+        <div class="why-stat">
+          <div class="why-stat-num">100%</div>
+          <div class="why-stat-label en">Verified</div>
+          <div class="why-stat-label fr">Vérifiés</div>
+        </div>
+      </div>
+      <div>
+        <span class="eyebrow en">Why Safe Engine</span>
+        <span class="eyebrow fr">Pourquoi Safe Engine</span>
+        <h2 class="section-title en">The Only Platform Where Every Listing Is Checked</h2>
+        <h2 class="section-title fr">La Seule Plateforme Où Chaque Annonce Est Vérifiée</h2>
+        <p class="section-sub en">We visit, photograph, and confirm every property before it appears on Safe Engine. That's our promise to you.</p>
+        <p class="section-sub fr">Nous visitons, photographions et confirmons chaque propriété avant publication. C'est notre promesse.</p>
+        <div class="why-pillars">
+          <div class="pillar-card">
+            <span class="pillar-icon">🔍</span>
+            <h4 class="en">Verified Listings</h4>
+            <h4 class="fr">Annonces Vérifiées</h4>
+            <p class="en">Every property personally checked by our team before going live.</p>
+            <p class="fr">Chaque propriété vérifiée personnellement avant publication.</p>
+          </div>
+          <div class="pillar-card">
+            <span class="pillar-icon">💰</span>
+            <h4 class="en">Affordable Focus</h4>
+            <h4 class="fr">Prix Abordables</h4>
+            <p class="en">Properties selected specifically for everyday Cameroonians.</p>
+            <p class="fr">Biens sélectionnés pour les Camerounais ordinaires.</p>
+          </div>
+          <div class="pillar-card">
+            <span class="pillar-icon">🗣️</span>
+            <h4 class="en">Fully Bilingual</h4>
+            <h4 class="fr">Entièrement Bilingue</h4>
+            <p class="en">Full English and French throughout the entire platform.</p>
+            <p class="fr">Support complet en anglais et en français sur toute la plateforme.</p>
+          </div>
+          <div class="pillar-card">
+            <span class="pillar-icon">🗺️</span>
+            <h4 class="en">Local Knowledge</h4>
+            <h4 class="fr">Connaissance Locale</h4>
+            <p class="en">Built specifically for Yaoundé's neighbourhoods and culture.</p>
+            <p class="fr">Conçu pour les quartiers et la culture de Yaoundé.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- NEIGHBOURHOODS -->
+<section id="neighbourhoods">
+  <div class="container">
+    <div class="reveal">
+      <span class="eyebrow en">Browse by Area</span>
+      <span class="eyebrow fr">Parcourir par Quartier</span>
+      <div class="neigh-header">
+        <div>
+          <h2 class="section-title en">Yaoundé Neighbourhoods</h2>
+          <h2 class="section-title fr">Quartiers de Yaoundé</h2>
+          <p class="section-sub en">Click any area to see available properties there.</p>
+          <p class="section-sub fr">Cliquez sur un quartier pour voir les propriétés disponibles.</p>
+        </div>
+        <div class="neigh-arrows">
+          <button class="neigh-arrow" id="neighLeft" aria-label="Scroll left">‹</button>
+          <button class="neigh-arrow" id="neighRight" aria-label="Scroll right">›</button>
+        </div>
+      </div>
+    </div>
+    <div class="neigh-scroll-wrap">
+      <div class="neigh-scroll" id="neighScroll">
+        <div class="neigh-pill active" data-area="Bastos">🏙️ Bastos <span class="neigh-count">12</span></div>
+        <div class="neigh-pill" data-area="Biyem-Assi">🌳 Biyem-Assi <span class="neigh-count">8</span></div>
+        <div class="neigh-pill" data-area="Essos">🏘️ Essos <span class="neigh-count">15</span></div>
+        <div class="neigh-pill" data-area="Melen">🌆 Melen <span class="neigh-count">6</span></div>
+        <div class="neigh-pill" data-area="Mvog-Mbi">🏗️ Mvog-Mbi <span class="neigh-count">9</span></div>
+        <div class="neigh-pill" data-area="Ngousso">🌿 Ngousso <span class="neigh-count">11</span></div>
+        <div class="neigh-pill" data-area="Omnisports">🏟️ Omnisports <span class="neigh-count">7</span></div>
+        <div class="neigh-pill" data-area="Santa Barbara">🌴 Santa Barbara <span class="neigh-count">5</span></div>
+        <div class="neigh-pill" data-area="Nkolbisson">🏡 Nkolbisson <span class="neigh-count">4</span></div>
+        <div class="neigh-pill" data-area="Mokolo">🌇 Mokolo <span class="neigh-count">10</span></div>
+      </div>
+    </div>
+
+    <!-- Dynamic neighbourhood results -->
+    <div class="neigh-results" id="neighResults">
+      <div class="neigh-results-title" id="neighResultsTitle"></div>
+      <div class="neigh-results-grid" id="neighResultsGrid"></div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- INTERACTIVE MAP -->
+<section id="map-section" style="background:var(--dark);padding:88px 5%">
+  <div class="container">
+    <div class="reveal" style="margin-bottom:2.5rem">
+      <span class="eyebrow en">Find Properties</span>
+      <span class="eyebrow fr">Localiser les Biens</span>
+      <h2 class="section-title en" style="color:white">Properties on the Map</h2>
+      <h2 class="section-title fr" style="color:white">Propriétés sur la Carte</h2>
+      <p class="section-sub en" style="color:rgba(255,255,255,0.5)">Click any pin to see property details and contact us directly on WhatsApp.</p>
+      <p class="section-sub fr" style="color:rgba(255,255,255,0.5)">Cliquez sur une épingle pour voir les détails et nous contacter sur WhatsApp.</p>
+    </div>
+    <div id="yaoundeMap" style="height:480px;border-radius:16px;overflow:hidden;border:2px solid rgba(255,255,255,0.1)"></div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section id="testimonials">
+  <div class="container">
+    <div class="reveal">
+      <span class="eyebrow en">Client Stories</span>
+      <span class="eyebrow fr">Témoignages</span>
+      <h2 class="section-title en" style="color:white">Trusted Across Yaoundé</h2>
+      <h2 class="section-title fr" style="color:white">La Confiance de Yaoundé</h2>
+    </div>
+    <div class="testimonials-grid">
+      <div class="tcard">
+        <div class="tcard-stars">★★★★★</div>
+        <p class="en">Safe Engine found me a verified studio in Biyem-Assi within 2 days. The WhatsApp process was incredibly simple. Highly recommend to anyone looking in Yaoundé!</p>
+        <p class="fr">Safe Engine m'a trouvé un studio vérifié à Biyem-Assi en 2 jours. Le processus WhatsApp était si simple. Je recommande vivement !</p>
+        <div class="tcard-author">
+          <div class="tcard-avatar">AN</div>
+          <div>
+            <div class="tcard-name">Aline Nkomo</div>
+            <div class="tcard-role en">Tenant, Biyem-Assi</div>
+            <div class="tcard-role fr">Locataire, Biyem-Assi</div>
+          </div>
+        </div>
+      </div>
+      <div class="tcard">
+        <div class="tcard-stars">★★★★★</div>
+        <p class="en">I've been burned by fake listings before. Safe Engine is completely different — every property I viewed was exactly as described. This is how it should be done.</p>
+        <p class="fr">J'ai déjà été victime de fausses annonces. Safe Engine est différent — chaque propriété était exactement comme décrite. C'est comme ça que ça devrait fonctionner.</p>
+        <div class="tcard-author">
+          <div class="tcard-avatar">JM</div>
+          <div>
+            <div class="tcard-name">Jean-François Mbarga</div>
+            <div class="tcard-role en">Tenant, Bastos</div>
+            <div class="tcard-role fr">Locataire, Bastos</div>
+          </div>
+        </div>
+      </div>
+      <div class="tcard">
+        <div class="tcard-stars">★★★★★</div>
+        <p class="en">As a student moving to Yaoundé, I was nervous. Safe Engine's team helped me find an affordable room and guided me through everything. Amazing service.</p>
+        <p class="fr">En tant qu'étudiante arrivant à Yaoundé, j'étais nerveuse. L'équipe m'a trouvé une chambre abordable et m'a guidée. Service incroyable.</p>
+        <div class="tcard-author">
+          <div class="tcard-avatar">CM</div>
+          <div>
+            <div class="tcard-name">Chantal Mvondo</div>
+            <div class="tcard-role en">Student Tenant, Ngousso</div>
+            <div class="tcard-role fr">Étudiante Locataire, Ngousso</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA BAND -->
+<section id="cta-band">
+  <div class="cta-circles">
+    <div class="cta-circle"></div>
+    <div class="cta-circle"></div>
+    <div class="cta-circle"></div>
+  </div>
+  <h2 class="en">Ready to Find Your Home?</h2>
+  <h2 class="fr">Prêt à Trouver Votre Maison ?</h2>
+  <p class="en">Send us a WhatsApp message — our team responds fast and helps you find the perfect verified rental in Yaoundé.</p>
+  <p class="fr">Envoyez-nous un message WhatsApp — notre équipe répond vite et vous aide à trouver la location parfaite et vérifiée à Yaoundé.</p>
+  <!-- UPDATE WHATSAPP NUMBER BELOW -->
+  <a href="https://wa.me/237676913599?text=Hello%20Safe%20Engine%2C%20I%27m%20looking%20for%20a%20rental%20in%20Yaound%C3%A9" target="_blank" class="wa-big-btn">
+    <span class="wa-icon">📱</span>
+    <span class="en">Chat with Safe Engine on WhatsApp</span>
+    <span class="fr">Discuter avec Safe Engine sur WhatsApp</span>
+  </a>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div style="display:flex;align-items:center;gap:12px;margin-bottom:1rem">
+          <svg width="42" height="42" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0">
+            <polygon points="50,2 93,26 93,74 50,98 7,74 7,26" fill="#1A6B3C" stroke="#F5A623" stroke-width="5"/>
+            <polygon points="50,11 85,30 85,70 50,89 15,70 15,30" fill="none" stroke="rgba(245,166,35,0.22)" stroke-width="1.5"/>
+            <text x="50" y="57" text-anchor="middle" dominant-baseline="middle" font-family="Arial Black,sans-serif" font-weight="900" font-size="30" fill="#F5A623" letter-spacing="-1">SE</text>
+            <circle cx="50" cy="80" r="3.5" fill="#F5A623"/>
+          </svg>
+          <span style="display:flex;flex-direction:column;line-height:1.15;gap:1px">
+            <span style="font-family:'Syne',sans-serif;font-size:1.05rem;font-weight:800;color:white;letter-spacing:0.06em">SAFE ENGINE</span>
+            <span style="font-size:0.45rem;font-weight:700;letter-spacing:0.18em;color:rgba(255,255,255,0.35);text-transform:uppercase">Civil · Infrastructure · Real Estate</span>
+          </span>
+        </div>
+        <p class="en">Verified rental properties in Yaoundé, Cameroon. Built for everyday Cameroonians who deserve honest, transparent housing.</p>
+        <p class="fr">Locations vérifiées à Yaoundé, Cameroun. Construit pour les Camerounais qui méritent un logement honnête et transparent.</p>
+      </div>
+      <div class="footer-col">
+        <h5 class="en">Listings</h5>
+        <h5 class="fr">Annonces</h5>
+        <a href="#properties" class="en">Featured Properties</a>
+        <a href="#properties" class="fr">Propriétés en Vedette</a>
+        <a href="#neighbourhoods" class="en">Browse by Area</a>
+        <a href="#neighbourhoods" class="fr">Parcourir par Quartier</a>
+      </div>
+      <div class="footer-col">
+        <h5 class="en">Company</h5>
+        <h5 class="fr">Entreprise</h5>
+        <a href="#why" class="en">About Safe Engine</a>
+        <a href="#why" class="fr">À Propos</a>
+        <a href="#how" class="en">How It Works</a>
+        <a href="#how" class="fr">Comment ça marche</a>
+      </div>
+      <div class="footer-col">
+        <h5>Contact</h5>
+        <!-- UPDATE WHATSAPP NUMBER AND EMAIL BELOW -->
+        <a href="https://wa.me/237676913599" target="_blank">📱 WhatsApp</a>
+        <a href="mailto:hello@safeengine.cm">✉️ hello@safeengine.cm</a>
+        <a href="#">📍 Yaoundé, Cameroun</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span class="en">© 2026 Safe Engine. All rights reserved.</span>
+      <span class="fr">© 2026 Safe Engine. Tous droits réservés.</span>
+      <span class="en">Privacy Policy · Terms of Service</span>
+      <span class="fr">Confidentialité · Conditions d'utilisation</span>
+    </div>
+  </div>
+
+    <!-- ADMIN ACCESS — subtle footer link -->
+    <div style="text-align:center;margin-top:1.5rem;padding-top:1rem;border-top:1px solid rgba(255,255,255,0.04)">
+      <a href="admin.html" style="font-size:0.7rem;color:rgba(255,255,255,0.15);text-decoration:none;letter-spacing:0.08em;transition:color 0.2s" onmouseover="this.style.color='rgba(255,255,255,0.5)'" onmouseout="this.style.color='rgba(255,255,255,0.15)'">⚙️ Staff Login</a>
+    </div>
+
+</footer>
+
+<button id="scrollTop" aria-label="Back to top">↑</button>
+
+<script>
+// ── NAV ──
+const navbar = document.getElementById('navbar');
+window.addEventListener('scroll', () => {
+  navbar.classList.toggle('scrolled', window.scrollY > 60);
+  document.getElementById('scrollTop').classList.toggle('show', window.scrollY > 400);
+}, { passive: true });
+
+// ── HERO BG ──
+window.addEventListener('load', () => document.getElementById('heroBg').classList.add('loaded'));
+
+// ── HAMBURGER ──
+const hamburger = document.getElementById('hamburger');
+const mobileMenu = document.getElementById('mobileMenu');
+hamburger.addEventListener('click', () => {
+  hamburger.classList.toggle('open');
+  mobileMenu.classList.toggle('open');
+});
+mobileMenu.querySelectorAll('a').forEach(a =>
+  a.addEventListener('click', () => {
+    hamburger.classList.remove('open');
+    mobileMenu.classList.remove('open');
+  })
+);
+
+// ── SCROLL TOP ──
+document.getElementById('scrollTop').addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+// ── LANGUAGE TOGGLE ──
+document.querySelectorAll('.lang-btn').forEach(btn =>
+  btn.addEventListener('click', () => {
+    const lang = btn.dataset.lang;
+    document.body.classList.toggle('lang-fr', lang === 'fr');
+    document.documentElement.lang = lang;
+    document.querySelectorAll('.lang-btn').forEach(b => b.classList.toggle('active', b.dataset.lang === lang));
+  })
+);
+
+// ── INTERSECTION OBSERVER — RE-FIRES EVERY TIME ──
+// Cards animate IN each time they enter the viewport (not just once)
+function makeObserver(els, enterClass, exitReset) {
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add(enterClass);
+      } else if (exitReset) {
+        entry.target.classList.remove(enterClass);
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -30px 0px' });
+  els.forEach(el => io.observe(el));
+}
+
+// Reveal elements — re-animate every time they enter view
+makeObserver(document.querySelectorAll('.reveal'), 'visible', true);
+makeObserver(document.querySelectorAll('.how-step'), 'visible', true);
+makeObserver(document.querySelectorAll('.pillar-card'), 'visible', true);
+makeObserver(document.querySelectorAll('.tcard'), 'visible', true);
+
+// Prop cards stagger — re-animate every time
+const propCards = document.querySelectorAll('.prop-card:not(.hidden)');
+const propSection = document.getElementById('properties');
+let propAnimated = false;
+const propIO = new IntersectionObserver((entries) => {
+  if (entries[0].isIntersecting) {
+    document.querySelectorAll('.prop-card:not(.hidden)').forEach((card, i) => {
+      setTimeout(() => card.classList.add('visible'), i * 80);
+    });
+  } else {
+    document.querySelectorAll('.prop-card').forEach(card => card.classList.remove('visible'));
+  }
+}, { threshold: 0.05 });
+if (propSection) propIO.observe(propSection);
+
+// ── SEARCH FILTER ──
+const searchBtn = document.getElementById('searchBtn');
+const filterNeighbourhood = document.getElementById('filterNeighbourhood');
+const filterType = document.getElementById('filterType');
+const filterPrice = document.getElementById('filterPrice');
+const allCards = document.querySelectorAll('.prop-card[data-neighbourhood]');
+const noResults = document.getElementById('noResults');
+const resultsBar = document.getElementById('search-results-bar');
+const resultsText = document.getElementById('search-results-text');
+const clearSearchBtn = document.getElementById('clearSearchBtn');
+
+function runSearch() {
+  const neigh = filterNeighbourhood.value.toLowerCase();
+  const type = filterType.value.toLowerCase();
+  const maxPrice = filterPrice.value ? parseInt(filterPrice.value) : Infinity;
+
+  let count = 0;
+  allCards.forEach(card => {
+    const cardNeigh = card.dataset.neighbourhood.toLowerCase();
+    const cardType = card.dataset.type.toLowerCase();
+    const cardPrice = parseInt(card.dataset.price);
+
+    const matchNeigh = !neigh || cardNeigh === neigh;
+    const matchType = !type || cardType === type;
+    const matchPrice = cardPrice <= maxPrice;
+
+    if (matchNeigh && matchType && matchPrice) {
+      card.classList.remove('hidden');
+      count++;
+    } else {
+      card.classList.add('hidden');
+      card.classList.remove('visible');
+    }
+  });
+
+  noResults.classList.toggle('show', count === 0);
+
+  // Stagger visible cards
+  let idx = 0;
+  allCards.forEach(card => {
+    if (!card.classList.contains('hidden')) {
+      const delay = idx * 80;
+      setTimeout(() => card.classList.add('visible'), delay);
+      idx++;
+    }
+  });
+
+  // Show results bar
+  const isFrench = document.body.classList.contains('lang-fr');
+  const parts = [];
+  if (neigh) parts.push(filterNeighbourhood.options[filterNeighbourhood.selectedIndex].text);
+  if (type) parts.push(filterType.options[filterType.selectedIndex].text);
+  if (filterPrice.value) parts.push(`≤ ${parseInt(filterPrice.value).toLocaleString()} XAF`);
+
+  if (parts.length > 0) {
+    resultsText.textContent = isFrench
+      ? `${count} résultat(s) pour : ${parts.join(' · ')}`
+      : `${count} result(s) for: ${parts.join(' · ')}`;
+    resultsBar.classList.add('show');
+    document.getElementById('properties').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  } else {
+    resultsBar.classList.remove('show');
+  }
+}
+
+searchBtn.addEventListener('click', runSearch);
+
+// Also allow Enter key in price field
+filterPrice.addEventListener('keydown', e => { if (e.key === 'Enter') runSearch(); });
+
+clearSearchBtn.addEventListener('click', () => {
+  filterNeighbourhood.value = '';
+  filterType.value = '';
+  filterPrice.value = '';
+  allCards.forEach(card => {
+    card.classList.remove('hidden');
+    card.classList.remove('visible');
+  });
+  noResults.classList.remove('show');
+  resultsBar.classList.remove('show');
+  // Re-stagger
+  allCards.forEach((card, i) => setTimeout(() => card.classList.add('visible'), i * 60));
+});
+
+// ── NEIGHBOURHOOD PILLS ──
+const neighData = {
+  'Bastos': [
+    { price: '75 000', title: 'Modern 2-Bed Apartment', img: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=400&q=55&auto=format&fit=crop', ref: 'REF-001' },
+    { price: '95 000', title: 'Bright 3-Bed Apartment', img: 'https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=400&q=55&auto=format&fit=crop', ref: 'REF-009' },
+    { price: '55 000', title: 'Furnished Studio', img: 'https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=400&q=55&auto=format&fit=crop', ref: 'REF-010' },
+  ],
+  'Biyem-Assi': [
+    { price: '35 000', title: 'Bright Studio — City Access', img: 'https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=400&q=55&auto=format&fit=crop', ref: 'REF-002' },
+    { price: '60 000', title: '2-Bed Apartment with Balcony', img: 'https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?w=400&q=55&auto=format&fit=crop', ref: 'REF-011' },
+  ],
+  'Essos': [
+    { price: '110 000', title: 'Spacious 3-Bed Family Home', img: 'https://images.unsplash.com/photo-1493809842364-78817add7ffb?w=400&q=55&auto=format&fit=crop', ref: 'REF-003' },
+    { price: '40 000', title: 'Compact 1-Bed Flat', img: 'https://images.unsplash.com/photo-1484154218962-a197022b5858?w=400&q=55&auto=format&fit=crop', ref: 'REF-012' },
+    { price: '70 000', title: 'Modern 2-Bed Apartment', img: 'https://images.unsplash.com/photo-1560185893-a55cbc8c57e3?w=400&q=55&auto=format&fit=crop', ref: 'REF-013' },
+  ],
+  'Melen': [
+    { price: '50 000', title: 'Guest House with Courtyard', img: 'https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=400&q=55&auto=format&fit=crop', ref: 'REF-004' },
+    { price: '28 000', title: 'Affordable Furnished Room', img: 'https://images.unsplash.com/photo-1484154218962-a197022b5858?w=400&q=55&auto=format&fit=crop', ref: 'REF-014' },
+  ],
+  'Mvog-Mbi': [
+    { price: '45 000', title: 'Cosy 1-Bed Apartment', img: 'https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?w=400&q=55&auto=format&fit=crop', ref: 'REF-007' },
+    { price: '30 000', title: 'Budget Studio Flat', img: 'https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=400&q=55&auto=format&fit=crop', ref: 'REF-015' },
+  ],
+  'Ngousso': [
+    { price: '20 000', title: 'Furnished Room — Shared Compound', img: 'https://images.unsplash.com/photo-1484154218962-a197022b5858?w=400&q=55&auto=format&fit=crop', ref: 'REF-005' },
+    { price: '55 000', title: '2-Bed House, Quiet Street', img: 'https://images.unsplash.com/photo-1493809842364-78817add7ffb?w=400&q=55&auto=format&fit=crop', ref: 'REF-016' },
+  ],
+  'Omnisports': [
+    { price: '180 000', title: 'Executive Villa with Garden', img: 'https://images.unsplash.com/photo-1416331108676-a22ccb276e35?w=400&q=55&auto=format&fit=crop', ref: 'REF-006' },
+    { price: '90 000', title: 'Spacious 3-Bed Home', img: 'https://images.unsplash.com/photo-1570129477492-45c003edd2be?w=400&q=55&auto=format&fit=crop', ref: 'REF-017' },
+  ],
+  'Santa Barbara': [
+    { price: '250 000', title: 'Luxury Villa — Gated Estate', img: 'https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?w=400&q=55&auto=format&fit=crop', ref: 'REF-008' },
+    { price: '130 000', title: 'Premium 4-Bed Villa', img: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=400&q=55&auto=format&fit=crop', ref: 'REF-018' },
+  ],
+  'Nkolbisson': [
+    { price: '38 000', title: '1-Bed Apartment Near University', img: 'https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?w=400&q=55&auto=format&fit=crop', ref: 'REF-019' },
+    { price: '25 000', title: 'Student Room — All Bills Included', img: 'https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=400&q=55&auto=format&fit=crop', ref: 'REF-020' },
+  ],
+  'Mokolo': [
+    { price: '42 000', title: 'Central Apartment, Market Access', img: 'https://images.unsplash.com/photo-1560185893-a55cbc8c57e3?w=400&q=55&auto=format&fit=crop', ref: 'REF-021' },
+    { price: '22 000', title: 'Compact Room — Secure Building', img: 'https://images.unsplash.com/photo-1484154218962-a197022b5858?w=400&q=55&auto=format&fit=crop', ref: 'REF-022' },
+  ],
+};
+
+const neighScroll = document.getElementById('neighScroll');
+const neighResults = document.getElementById('neighResults');
+const neighResultsGrid = document.getElementById('neighResultsGrid');
+const neighResultsTitle = document.getElementById('neighResultsTitle');
+
+function showNeighbourhood(area) {
+  const isFrench = document.body.classList.contains('lang-fr');
+  const listings = neighData[area];
+  if (!listings) return;
+
+  neighResultsTitle.textContent = isFrench
+    ? `Propriétés disponibles à ${area} (${listings.length})`
+    : `Available properties in ${area} (${listings.length})`;
+
+  neighResultsGrid.innerHTML = listings.map((l, i) => `
+    <div class="neigh-card" style="animation-delay:${i * 90}ms">
+      <img class="neigh-card-img" src="${l.img}" alt="${l.title}" loading="lazy">
+      <div class="neigh-card-body">
+        <div class="neigh-card-price">${l.price} XAF<span style="font-family:'DM Sans';font-size:0.72rem;font-weight:400;color:var(--muted)"> / month</span></div>
+        <div class="neigh-card-title">${l.title}</div>
+        <div class="neigh-card-loc">📍 ${area}, Yaoundé</div>
+      </div>
+      <a href="https://wa.me/237676913599?text=Hello%2C%20I%27m%20interested%20in%20${l.ref}%20(${encodeURIComponent(area)})" target="_blank" class="neigh-card-wa">📱 Contact on WhatsApp</a>
+    </div>
+  `).join('');
+
+  neighResults.classList.add('show');
+  setTimeout(() => neighResults.scrollIntoView({ behavior: 'smooth', block: 'nearest' }), 100);
+}
+
+document.querySelectorAll('.neigh-pill').forEach(pill => {
+  pill.addEventListener('click', () => {
+    document.querySelectorAll('.neigh-pill').forEach(p => p.classList.remove('active'));
+    pill.classList.add('active');
+    showNeighbourhood(pill.dataset.area);
+  });
+});
+
+// Show Bastos results by default WITHOUT scrolling
+(function(){
+  const area = 'Bastos';
+  const listings = neighData[area];
+  if (!listings) return;
+  neighResultsTitle.textContent = `Available properties in ${area} (${listings.length})`;
+  neighResultsGrid.innerHTML = listings.map((l, i) => `
+    <div class="neigh-card" style="animation-delay:${i * 90}ms">
+      <img class="neigh-card-img" src="${l.img}" alt="${l.title}" loading="lazy">
+      <div class="neigh-card-body">
+        <div class="neigh-card-price">${l.price} XAF<span style="font-family:'DM Sans';font-size:0.72rem;font-weight:400;color:var(--muted)"> / month</span></div>
+        <div class="neigh-card-title">${l.title}</div>
+        <div class="neigh-card-loc">📍 ${area}, Yaoundé</div>
+      </div>
+      <a href="https://wa.me/237676913599?text=Hello%2C%20I%27m%20interested%20in%20${l.ref}%20(${encodeURIComponent(area)})" target="_blank" class="neigh-card-wa">📱 Contact on WhatsApp</a>
+    </div>
+  `).join('');
+  neighResults.classList.add('show');
+  // NO scrollIntoView here — page must open at top
+})();
+
+// Neighbourhood arrow scroll
+document.getElementById('neighLeft').addEventListener('click', () => {
+  neighScroll.scrollBy({ left: -240, behavior: 'smooth' });
+});
+document.getElementById('neighRight').addEventListener('click', () => {
+  neighScroll.scrollBy({ left: 240, behavior: 'smooth' });
+});
+</script>
+<script>
+// ── SUPABASE CONFIG ──
+const SUPABASE_URL = 'https://fxuhgxqldyvztkyjgeac.supabase.co';
+const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZ4dWhneHFsZHl2enRreWpnZWFjIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODI0MzYwNjMsImV4cCI6MjA5ODAxMjA2M30.XqGZ78V_8kJx4BQtIijBUzg8VBpgiShTMOLu-u2S0Lo';
+
+async function fetchSupabaseProperties() {
+  try {
+    const r = await fetch(SUPABASE_URL + '/rest/v1/properties?select=*&status=neq.hidden&order=featured.desc,created_at.desc', {
+      headers: { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + SUPABASE_KEY }
+    });
+    if (!r.ok) return null;
+    return await r.json();
+  } catch(e) { return null; }
+}
+
+// ── INTERACTIVE MAP ──
+let mapInstance = null;
+
+async function initMap() {
+  if (mapInstance) return;
+  mapInstance = L.map('yaoundeMap').setView([3.8480, 11.5021], 13);
+
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '© OpenStreetMap contributors',
+    maxZoom: 19
+  }).addTo(mapInstance);
+
+  // Custom amber pin icon
+  const pinIcon = L.divIcon({
+    className: '',
+    html: `<div style="width:36px;height:36px;background:var(--amber,#F5A623);border-radius:50% 50% 50% 0;transform:rotate(-45deg);border:3px solid white;box-shadow:0 3px 12px rgba(0,0,0,0.3)"></div>`,
+    iconSize: [36, 36],
+    iconAnchor: [18, 36],
+    popupAnchor: [0, -38]
+  });
+
+  // Static neighbourhood pins (always shown)
+  const neighbourhoodPins = [
+    { name: 'Bastos', lat: 3.8762, lng: 11.5156, count: 12 },
+    { name: 'Biyem-Assi', lat: 3.8330, lng: 11.4892, count: 8 },
+    { name: 'Essos', lat: 3.8680, lng: 11.5310, count: 15 },
+    { name: 'Melen', lat: 3.8590, lng: 11.5080, count: 6 },
+    { name: 'Mvog-Mbi', lat: 3.8420, lng: 11.5220, count: 9 },
+    { name: 'Ngousso', lat: 3.8850, lng: 11.5380, count: 11 },
+    { name: 'Omnisports', lat: 3.8530, lng: 11.5100, count: 7 },
+    { name: 'Santa Barbara', lat: 3.9050, lng: 11.5020, count: 5 },
+    { name: 'Nkolbisson', lat: 3.8700, lng: 11.4450, count: 4 },
+    { name: 'Mokolo', lat: 3.8640, lng: 11.5000, count: 10 },
+  ];
+
+  neighbourhoodPins.forEach(pin => {
+    const marker = L.marker([pin.lat, pin.lng], { icon: pinIcon }).addTo(mapInstance);
+    marker.bindPopup(`
+      <div style="font-family:'DM Sans',sans-serif;min-width:200px">
+        <div style="font-weight:800;font-size:1rem;margin-bottom:4px">📍 ${pin.name}</div>
+        <div style="font-size:0.82rem;color:#4A5C52;margin-bottom:10px">${pin.count} verified listings available</div>
+        <a href="https://wa.me/237600000000?text=Hello%2C%20I%27m%20looking%20for%20a%20property%20in%20${encodeURIComponent(pin.name)}%2C%20Yaound%C3%A9" 
+          target="_blank"
+          style="display:inline-flex;align-items:center;gap:6px;background:#2FAF65;color:white;padding:7px 14px;border-radius:6px;text-decoration:none;font-size:0.8rem;font-weight:700">
+          📱 View on WhatsApp
+        </a>
+      </div>
+    `, { maxWidth: 260 });
+  });
+
+  // Load live properties from Supabase and add their pins
+  const liveProps = await fetchSupabaseProperties();
+  if (Array.isArray(liveProps)) {
+    liveProps.forEach(p => {
+      if (!p.lat || !p.lng) return;
+      const liveIcon = L.divIcon({
+        className: '',
+        html: `<div style="width:32px;height:32px;background:#1A6B3C;border-radius:50% 50% 50% 0;transform:rotate(-45deg);border:3px solid white;box-shadow:0 3px 12px rgba(0,0,0,0.3)"></div>`,
+        iconSize: [32, 32],
+        iconAnchor: [16, 32],
+        popupAnchor: [0, -34]
+      });
+      const m = L.marker([p.lat, p.lng], { icon: liveIcon }).addTo(mapInstance);
+      m.bindPopup(`
+        <div style="font-family:'DM Sans',sans-serif;min-width:220px">
+          ${p.image_url ? `<img src="${p.image_url}" style="width:100%;height:120px;object-fit:cover;border-radius:6px;margin-bottom:8px">` : ''}
+          <div style="font-weight:700;font-size:0.9rem;margin-bottom:2px">${p.title_en || p.title_fr || 'Property'}</div>
+          <div style="font-size:0.78rem;color:#4A5C52;margin-bottom:4px">📍 ${p.neighbourhood}, Yaoundé</div>
+          <div style="font-size:1rem;font-weight:800;color:#1A6B3C;margin-bottom:10px">${Number(p.price).toLocaleString()} XAF/mo</div>
+          <a href="https://wa.me/237600000000?text=Hello%2C%20I%27m%20interested%20in%20${encodeURIComponent(p.ref||p.title_en||'a property')}"
+            target="_blank"
+            style="display:inline-flex;align-items:center;gap:6px;background:#2FAF65;color:white;padding:7px 14px;border-radius:6px;text-decoration:none;font-size:0.8rem;font-weight:700">
+            📱 Contact on WhatsApp
+          </a>
+        </div>
+      `, { maxWidth: 280 });
+    });
+  }
+}
+
+// Initialize map when it scrolls into view
+const mapObserver = new IntersectionObserver((entries) => {
+  if (entries[0].isIntersecting) {
+    initMap();
+    mapObserver.disconnect();
+  }
+}, { threshold: 0.1 });
+const mapEl = document.getElementById('yaoundeMap');
+if (mapEl) mapObserver.observe(mapEl);
+
+// ── LOAD SUPABASE LISTINGS INTO THE GRID ──
+(async function loadLiveListings() {
+  const props = await fetchSupabaseProperties();
+  if (!Array.isArray(props) || props.length === 0) return; // fall back to static listings
+
+  const grid = document.getElementById('propertiesGrid');
+  const noResults = document.getElementById('noResults');
+  if (!grid) return;
+
+  // Clear existing static cards
+  grid.innerHTML = '';
+
+  props.forEach((p, i) => {
+    const card = document.createElement('div');
+    card.className = 'prop-card';
+    card.dataset.neighbourhood = p.neighbourhood || '';
+    card.dataset.type = p.type || '';
+    card.dataset.price = p.price || 0;
+    card.innerHTML = `
+      <div class="prop-img-wrap">
+        <span class="prop-tag en">${p.status === 'available' ? 'Available' : p.status}</span>
+        <span class="prop-tag fr">${p.status === 'available' ? 'Disponible' : p.status}</span>
+        <span class="verified-badge">✓ <span class="en">Verified</span><span class="fr">Vérifié</span></span>
+        <img class="prop-img" src="${p.image_url || 'https://images.unsplash.com/photo-1560185893-a55cbc8c57e3?w=600&q=55&auto=format&fit=crop'}" alt="${p.title_en || ''}" loading="lazy">
+      </div>
+      <div class="prop-body">
+        <div class="prop-price">${Number(p.price).toLocaleString()} XAF <span class="en">/ month</span><span class="fr">/ mois</span></div>
+        <div class="prop-title en">${p.title_en || ''}</div>
+        <div class="prop-title fr">${p.title_fr || p.title_en || ''}</div>
+        <div class="prop-location">📍 ${p.neighbourhood}, Yaoundé</div>
+        <div class="prop-meta">
+          ${p.beds ? `<span>🛏 ${p.beds} <span class="en">Beds</span><span class="fr">Ch.</span></span>` : ''}
+          ${p.baths ? `<span>🚿 ${p.baths} <span class="en">Bath</span><span class="fr">SdB</span></span>` : ''}
+          ${p.area ? `<span>📐 ${p.area} m²</span>` : ''}
+        </div>
+      </div>
+      <a href="https://wa.me/237600000000?text=Hello%2C%20I%27m%20interested%20in%20${encodeURIComponent(p.ref||p.title_en||'a property')}%20(Yaound%C3%A9)" target="_blank" class="prop-wa-btn">
+        📱 <span class="en">Contact on WhatsApp</span><span class="fr">Contacter sur WhatsApp</span>
+      </a>
+    `;
+    grid.appendChild(card);
+    setTimeout(() => card.classList.add('visible'), i * 80);
+  });
+
+  if (noResults) grid.appendChild(noResults);
+})();
+</script>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+</body>
+</html>
