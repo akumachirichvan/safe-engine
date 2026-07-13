@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Property Details — Safe Engine</title>
+<link rel="icon" type="image/png" sizes="32x32" href="favicon.png">
+<link rel="apple-touch-icon" href="favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --navy:#1B2A6B;--navy-mid:#162058;--navy-light:#2A3F9F;
+  --gold:#C9A227;--gold-light:#E0B93A;
+  --cream:#F4F5F9;--dark:#0A1128;--slate:#3A4468;
+  --border:#D0D4E8;--white:#fff;
+}
+body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--dark);min-height:100vh}
+
+/* NAV */
+nav{background:var(--dark);padding:0 5%;height:70px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;box-shadow:0 2px 20px rgba(0,0,0,0.3)}
+.nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none}
+.back-btn{display:flex;align-items:center;gap:8px;color:rgba(255,255,255,0.7);text-decoration:none;font-size:0.85rem;font-weight:600;padding:0.5rem 1.1rem;border:1.5px solid rgba(255,255,255,0.2);border-radius:20px;transition:all 0.2s}
+.back-btn:hover{color:var(--gold);border-color:var(--gold)}
+.back-btn .arrow{font-size:1rem}
+
+/* MAIN LAYOUT */
+.container{max-width:1100px;margin:0 auto;padding:2.5rem 5%}
+.breadcrumb{font-size:0.78rem;color:var(--slate);margin-bottom:1.5rem;display:flex;align-items:center;gap:6px}
+.breadcrumb a{color:var(--navy-light);text-decoration:none}
+.breadcrumb a:hover{color:var(--gold)}
+
+/* HERO IMAGE + GALLERY */
+.gallery-wrap{display:grid;grid-template-columns:2fr 1fr;gap:0.75rem;margin-bottom:2rem;border-radius:14px;overflow:hidden;max-height:440px}
+.gallery-main{position:relative;overflow:hidden;cursor:pointer}
+.gallery-main img{width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.5s}
+.gallery-main:hover img{transform:scale(1.03)}
+.gallery-side{display:grid;grid-template-rows:1fr 1fr;gap:0.75rem}
+.gallery-thumb{position:relative;overflow:hidden;cursor:pointer}
+.gallery-thumb img{width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.4s;filter:brightness(0.88)}
+.gallery-thumb:hover img{transform:scale(1.05);filter:brightness(1)}
+.gallery-more{position:absolute;inset:0;background:rgba(10,17,40,0.62);display:flex;align-items:center;justify-content:center;color:white;font-size:1.1rem;font-weight:700;cursor:pointer}
+
+/* CONTENT GRID */
+.content-grid{display:grid;grid-template-columns:1fr 340px;gap:2rem;align-items:start}
+
+/* LEFT */
+.prop-title-row{margin-bottom:1rem}
+.prop-status{display:inline-flex;align-items:center;gap:6px;background:#DCFCE7;color:#166534;font-size:0.72rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;padding:4px 12px;border-radius:20px;margin-bottom:0.75rem}
+.prop-status.rented{background:#FEE2E2;color:#991B1B}
+.prop-title{font-family:'Syne',sans-serif;font-size:1.9rem;font-weight:800;color:var(--dark);line-height:1.2;margin-bottom:0.4rem}
+.prop-location-row{display:flex;align-items:center;gap:6px;font-size:0.9rem;color:var(--slate);margin-bottom:1rem}
+.prop-price-row{display:flex;align-items:baseline;gap:8px;margin-bottom:1.5rem}
+.prop-price{font-family:'Syne',sans-serif;font-size:2rem;font-weight:800;color:var(--navy)}
+.prop-price-sub{font-size:0.85rem;color:var(--slate)}
+
+/* SPECS GRID */
+.specs-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:0.75rem;margin-bottom:2rem}
+.spec-card{background:white;border-radius:10px;padding:1rem;text-align:center;border:1px solid var(--border)}
+.spec-icon{font-size:1.5rem;margin-bottom:0.4rem}
+.spec-val{font-family:'Syne',sans-serif;font-size:1.05rem;font-weight:700;color:var(--dark);display:block}
+.spec-label{font-size:0.7rem;color:var(--slate);text-transform:uppercase;letter-spacing:0.08em}
+
+/* SECTIONS */
+.section{margin-bottom:2rem}
+.section-title{font-family:'Syne',sans-serif;font-size:1.05rem;font-weight:700;color:var(--dark);margin-bottom:1rem;padding-bottom:0.5rem;border-bottom:2px solid var(--border);display:flex;align-items:center;gap:8px}
+.desc-text{font-size:0.92rem;line-height:1.8;color:var(--slate)}
+
+/* ROOM GALLERY */
+.rooms-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:0.75rem}
+.room-card{border-radius:10px;overflow:hidden;background:white;border:1px solid var(--border)}
+.room-img{width:100%;height:130px;object-fit:cover;display:block}
+.room-label{padding:0.5rem 0.75rem;font-size:0.78rem;font-weight:600;color:var(--dark)}
+
+/* FEATURES LIST */
+.features-grid{display:grid;grid-template-columns:1fr 1fr;gap:0.5rem}
+.feature-item{display:flex;align-items:center;gap:8px;font-size:0.85rem;color:var(--slate);padding:0.4rem 0}
+.feature-check{width:18px;height:18px;background:var(--navy);border-radius:50%;display:flex;align-items:center;justify-content:center;color:white;font-size:0.6rem;flex-shrink:0}
+
+/* MAP */
+#detailMap{height:240px;border-radius:10px;border:1px solid var(--border)}
+
+/* RIGHT SIDEBAR */
+.sidebar-card{background:white;border-radius:14px;padding:1.5rem;border:1px solid var(--border);position:sticky;top:88px}
+.sidebar-price{font-family:'Syne',sans-serif;font-size:1.6rem;font-weight:800;color:var(--navy);margin-bottom:0.25rem}
+.sidebar-price-sub{font-size:0.8rem;color:var(--slate);margin-bottom:1.25rem}
+.wa-btn{display:flex;align-items:center;justify-content:center;gap:10px;background:#25D366;color:white;padding:1rem;border-radius:10px;text-decoration:none;font-weight:700;font-size:0.95rem;margin-bottom:0.75rem;transition:background 0.2s,transform 0.15s}
+.wa-btn:hover{background:#1DB954;transform:translateY(-2px)}
+.call-btn{display:flex;align-items:center;justify-content:center;gap:10px;background:var(--navy);color:white;padding:0.85rem;border-radius:10px;text-decoration:none;font-weight:600;font-size:0.88rem;margin-bottom:1.25rem;transition:background 0.2s}
+.call-btn:hover{background:var(--navy-mid)}
+.sidebar-divider{height:1px;background:var(--border);margin:1.25rem 0}
+.sidebar-detail{display:flex;justify-content:space-between;align-items:center;font-size:0.83rem;padding:0.4rem 0;border-bottom:1px solid var(--border)}
+.sidebar-detail:last-child{border-bottom:none}
+.sidebar-detail-label{color:var(--slate)}
+.sidebar-detail-val{font-weight:600;color:var(--dark)}
+.verified-bar{display:flex;align-items:center;gap:8px;background:#EFF6FF;border:1px solid #BFDBFE;border-radius:8px;padding:0.75rem;margin-top:1.25rem;font-size:0.8rem;color:#1E40AF}
+
+/* LIGHTBOX */
+.lightbox{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.92);z-index:999;align-items:center;justify-content:center;padding:1rem}
+.lightbox.show{display:flex}
+.lightbox img{max-width:90vw;max-height:90vh;border-radius:8px;object-fit:contain}
+.lightbox-close{position:fixed;top:20px;right:24px;color:white;font-size:2rem;cursor:pointer;background:none;border:none;line-height:1}
+.lightbox-prev,.lightbox-next{position:fixed;top:50%;transform:translateY(-50%);color:white;font-size:2rem;cursor:pointer;background:rgba(255,255,255,0.1);border:none;padding:0.5rem 1rem;border-radius:8px;transition:background 0.2s}
+.lightbox-prev{left:16px}
+.lightbox-next{right:16px}
+.lightbox-prev:hover,.lightbox-next:hover{background:rgba(255,255,255,0.25)}
+
+/* LOADING */
+.loading-screen{display:flex;align-items:center;justify-content:center;min-height:60vh;flex-direction:column;gap:1rem;color:var(--slate)}
+.spinner{width:36px;height:36px;border:3px solid var(--border);border-top-color:var(--navy);border-radius:50%;animation:spin 0.7s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+/* RESPONSIVE */
+@media(max-width:860px){.content-grid{grid-template-columns:1fr}.sidebar-card{position:static}.gallery-wrap{grid-template-columns:1fr;max-height:280px}.gallery-side{display:none}.specs-grid{grid-template-columns:repeat(2,1fr)}.rooms-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:500px){.specs-grid{grid-template-columns:repeat(2,1fr)}.features-grid{grid-template-columns:1fr}}
+</style>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="index.html" class="nav-logo" style="display:flex;align-items:center;text-decoration:none">
+    <img src="logo-navbar.png" alt="Safe Engine" style="height:48px;width:auto;object-fit:contain">
+  </a>
+  <a href="index.html" class="back-btn"><span class="arrow">←</span> Back to Listings</a>
+</nav>
+
+<!-- CONTENT -->
+<div class="container">
+  <div class="breadcrumb">
+    <a href="index.html">Home</a> › <a href="index.html#properties">Listings</a> › <span id="breadcrumbTitle">Property Details</span>
+  </div>
+
+  <div id="loadingScreen" class="loading-screen">
+    <div class="spinner"></div>
+    <span>Loading property details…</span>
+  </div>
+
+  <div id="propContent" style="display:none">
+
+    <!-- GALLERY -->
+    <div class="gallery-wrap" id="galleryWrap">
+      <div class="gallery-main" onclick="openLightbox(0)">
+        <img id="mainImg" src="" alt="Main property image">
+      </div>
+      <div class="gallery-side">
+        <div class="gallery-thumb" onclick="openLightbox(1)">
+          <img id="thumb1" src="" alt="">
+        </div>
+        <div class="gallery-thumb" onclick="openLightbox(2)" style="position:relative">
+          <img id="thumb2" src="" alt="">
+          <div class="gallery-more" id="morePhotos">+3 Photos</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="content-grid">
+      <!-- LEFT COLUMN -->
+      <div>
+        <div class="prop-title-row">
+          <div class="prop-status" id="propStatus">✓ Available</div>
+          <h1 class="prop-title" id="propTitle">—</h1>
+          <div class="prop-location-row">📍 <span id="propLocation">—</span></div>
+          <div class="prop-price-row">
+            <div class="prop-price" id="propPrice">—</div>
+            <div class="prop-price-sub">XAF / month</div>
+          </div>
+        </div>
+
+        <!-- SPECS -->
+        <div class="specs-grid" id="specsGrid"></div>
+
+        <!-- DESCRIPTION -->
+        <div class="section">
+          <div class="section-title">📝 About this Property</div>
+          <p class="desc-text" id="propDesc">—</p>
+        </div>
+
+        <!-- ROOM PHOTOS -->
+        <div class="section" id="roomsSection">
+          <div class="section-title">📸 Inside the Property</div>
+          <div class="rooms-grid" id="roomsGrid"></div>
+        </div>
+
+        <!-- FEATURES -->
+        <div class="section">
+          <div class="section-title">✅ Features & Amenities</div>
+          <div class="features-grid" id="featuresGrid"></div>
+        </div>
+
+        <!-- MAP -->
+        <div class="section" id="mapSection">
+          <div class="section-title">🗺️ Location on Map</div>
+          <div id="detailMap"></div>
+        </div>
+
+      </div>
+
+      <!-- RIGHT SIDEBAR -->
+      <div>
+        <div class="sidebar-card">
+          <div class="sidebar-price" id="sidebarPrice">—</div>
+          <div class="sidebar-price-sub">per month · all charges included</div>
+          <a id="waBtn" href="#" target="_blank" class="wa-btn">
+            📱 Contact on WhatsApp
+          </a>
+          <a href="tel:+237676913599" class="call-btn">
+            📞 Call +237 676 913 599
+          </a>
+          <div id="sidebarDetails"></div>
+          <div class="verified-bar">
+            🔒 This property has been personally verified by the Safe Engine team
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /propContent -->
+</div>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox">
+  <button class="lightbox-close" onclick="closeLightbox()">✕</button>
+  <button class="lightbox-prev" onclick="changeLightbox(-1)">‹</button>
+  <img id="lightboxImg" src="" alt="">
+  <button class="lightbox-next" onclick="changeLightbox(1)">›</button>
+</div>
+
+<!-- FOOTER -->
+<footer style="background:#0A1128;color:rgba(255,255,255,0.4);text-align:center;padding:1.5rem;font-size:0.78rem;margin-top:3rem">
+  © 2026 Safe Engine · <a href="mailto:safeengineofficial@gmail.com" style="color:rgba(201,162,39,0.7);text-decoration:none">safeengineofficial@gmail.com</a>
+</footer>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script>
+const SUPABASE_URL = 'https://fxuhgxqldyvztkyjgeac.supabase.co';
+const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZ4dWhneHFsZHl2enRreWpnZWFjIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODI0MzYwNjMsImV4cCI6MjA5ODAxMjA2M30.XqGZ78V_8kJx4BQtIijBUzg8VBpgiShTMOLu-u2S0Lo';
+
+// Room images by type
+const roomImages = {
+  apartment: [
+    { url:'https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=400&q=55&auto=format&fit=crop', label:'Living Room' },
+    { url:'https://images.unsplash.com/photo-1556909172-54557c7e4fb7?w=400&q=55&auto=format&fit=crop', label:'Kitchen' },
+    { url:'https://images.unsplash.com/photo-1540518614846-7eded433c457?w=400&q=55&auto=format&fit=crop', label:'Bedroom' },
+    { url:'https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?w=400&q=55&auto=format&fit=crop', label:'Bathroom' },
+    { url:'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&q=55&auto=format&fit=crop', label:'Balcony' },
+  ],
+  villa: [
+    { url:'https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=400&q=55&auto=format&fit=crop', label:'Living Room' },
+    { url:'https://images.unsplash.com/photo-1556909172-54557c7e4fb7?w=400&q=55&auto=format&fit=crop', label:'Kitchen' },
+    { url:'https://images.unsplash.com/photo-1540518614846-7eded433c457?w=400&q=55&auto=format&fit=crop', label:'Master Bedroom' },
+    { url:'https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?w=400&q=55&auto=format&fit=crop', label:'Bathroom' },
+    { url:'https://images.unsplash.com/photo-1572635196237-14b3f281503f?w=400&q=55&auto=format&fit=crop', label:'Garden' },
+  ],
+  studio: [
+    { url:'https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=400&q=55&auto=format&fit=crop', label:'Main Room' },
+    { url:'https://images.unsplash.com/photo-1556909172-54557c7e4fb7?w=400&q=55&auto=format&fit=crop', label:'Kitchenette' },
+    { url:'https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?w=400&q=55&auto=format&fit=crop', label:'Bathroom' },
+  ],
+  family: [
+    { url:'https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=400&q=55&auto=format&fit=crop', label:'Living Room' },
+    { url:'https://images.unsplash.com/photo-1556909172-54557c7e4fb7?w=400&q=55&auto=format&fit=crop', label:'Kitchen' },
+    { url:'https://images.unsplash.com/photo-1540518614846-7eded433c457?w=400&q=55&auto=format&fit=crop', label:'Bedroom' },
+    { url:'https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?w=400&q=55&auto=format&fit=crop', label:'Bathroom' },
+    { url:'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&q=55&auto=format&fit=crop', label:'Compound' },
+  ],
+  room: [
+    { url:'https://images.unsplash.com/photo-1540518614846-7eded433c457?w=400&q=55&auto=format&fit=crop', label:'Room' },
+    { url:'https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?w=400&q=55&auto=format&fit=crop', label:'Shared Bathroom' },
+  ],
+  guesthouse: [
+    { url:'https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=400&q=55&auto=format&fit=crop', label:'Living Area' },
+    { url:'https://images.unsplash.com/photo-1556909172-54557c7e4fb7?w=400&q=55&auto=format&fit=crop', label:'Kitchen' },
+    { url:'https://images.unsplash.com/photo-1540518614846-7eded433c457?w=400&q=55&auto=format&fit=crop', label:'Bedroom' },
+    { url:'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&q=55&auto=format&fit=crop', label:'Courtyard' },
+  ],
+};
+
+const featuresByType = {
+  villa:['Private Garden','Parking Space','Security Gate','Generator Backup','Water Tank','Air Conditioning','Tiled Floors','Ceiling Fans','Fenced Compound','Close to Schools'],
+  apartment:['Water Supply','Electricity','Tiled Floors','Ceiling Fans','Natural Lighting','Close to Transport','Security Door','Ventilated Kitchen','Street Access','Quiet Neighbourhood'],
+  studio:['Water Supply','Electricity','Furnished Option','Natural Light','Close to Transport','Quiet Area','Security Door','Ventilated'],
+  family:['Large Compound','Water Tank','Electricity','Tiled Floors','Ceiling Fans','Parking Space','Fenced','Close to Market'],
+  room:['Water Supply','Electricity','Furnished','Shared Kitchen','Shared Bathroom','Close to Transport','Security'],
+  guesthouse:['Private Courtyard','Water Supply','Electricity','Tiled Floors','Ceiling Fans','Quiet Street','Parking Available'],
+};
+
+// Lightbox
+let lightboxImages = [];
+let lightboxIndex = 0;
+function openLightbox(i) {
+  lightboxIndex = i;
+  document.getElementById('lightboxImg').src = lightboxImages[i] || lightboxImages[0];
+  document.getElementById('lightbox').classList.add('show');
+}
+function closeLightbox() { document.getElementById('lightbox').classList.remove('show'); }
+function changeLightbox(dir) {
+  lightboxIndex = (lightboxIndex + dir + lightboxImages.length) % lightboxImages.length;
+  document.getElementById('lightboxImg').src = lightboxImages[lightboxIndex];
+}
+document.addEventListener('keydown', e => { if(e.key==='Escape') closeLightbox(); if(e.key==='ArrowRight') changeLightbox(1); if(e.key==='ArrowLeft') changeLightbox(-1); });
+
+// Load property
+async function loadProperty() {
+  const params = new URLSearchParams(window.location.search);
+  const id = params.get('id');
+  const ref = params.get('ref');
+
+  let prop = null;
+
+  if (id || ref) {
+    const query = id ? `id=eq.${id}` : `ref=eq.${ref}`;
+    try {
+      const r = await fetch(`${SUPABASE_URL}/rest/v1/properties?${query}&select=*`, {
+        headers: { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + SUPABASE_KEY }
+      });
+      const data = await r.json();
+      if (Array.isArray(data) && data.length > 0) prop = data[0];
+    } catch(e) {}
+  }
+
+  // Fallback: use URL params directly (for static listings)
+  if (!prop) {
+    prop = {
+      title_en: params.get('title') || 'Property Details',
+      title_fr: params.get('titlefr') || params.get('title') || 'Détails de la propriété',
+      neighbourhood: params.get('neighbourhood') || '',
+      type: params.get('type') || 'apartment',
+      price: parseInt(params.get('price')) || 0,
+      status: params.get('status') || 'available',
+      beds: parseInt(params.get('beds')) || 0,
+      baths: parseInt(params.get('baths')) || 0,
+      area: parseInt(params.get('area')) || 0,
+      ref: params.get('ref') || '',
+      lat: parseFloat(params.get('lat')) || 3.8480,
+      lng: parseFloat(params.get('lng')) || 11.5021,
+      image_url: params.get('img') || 'https://images.unsplash.com/photo-1560185893-a55cbc8c57e3?w=800&q=60&auto=format&fit=crop',
+      desc_en: params.get('desc') || 'A verified property in Yaoundé by Safe Engine. Contact us on WhatsApp for a viewing.',
+      desc_fr: params.get('descfr') || 'Propriété vérifiée à Yaoundé par Safe Engine. Contactez-nous sur WhatsApp pour une visite.',
+    };
+  }
+
+  renderProperty(prop);
+}
+
+function renderProperty(p) {
+  document.title = `${p.title_en} — Safe Engine`;
+  document.getElementById('breadcrumbTitle').textContent = p.title_en;
+  document.getElementById('propTitle').textContent = p.title_en;
+  document.getElementById('propLocation').textContent = `${p.neighbourhood}, Yaoundé`;
+  document.getElementById('propPrice').textContent = Number(p.price).toLocaleString();
+  document.getElementById('sidebarPrice').textContent = Number(p.price).toLocaleString() + ' XAF';
+  document.getElementById('propDesc').textContent = p.desc_en || 'Contact Safe Engine for full property details.';
+
+  // Status
+  const statusEl = document.getElementById('propStatus');
+  if (p.status === 'rented') { statusEl.textContent = '✗ Rented'; statusEl.className = 'prop-status rented'; }
+  else { statusEl.textContent = '✓ Available'; }
+
+  // WhatsApp button
+  const waRef = p.ref || p.title_en;
+  const waMsg = encodeURIComponent(`Hello, I'm interested in ${waRef} (${p.neighbourhood}, Yaoundé)`);
+  document.getElementById('waBtn').href = `https://wa.me/237676913599?text=${waMsg}`;
+
+  // Gallery images
+  const imgs = [
+    p.image_url || 'https://images.unsplash.com/photo-1560185893-a55cbc8c57e3?w=800&q=60&auto=format&fit=crop',
+    'https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=600&q=55&auto=format&fit=crop',
+    'https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?w=600&q=55&auto=format&fit=crop',
+  ];
+  lightboxImages = imgs;
+  document.getElementById('mainImg').src = imgs[0];
+  document.getElementById('thumb1').src = imgs[1];
+  document.getElementById('thumb2').src = imgs[2];
+
+  // Specs
+  const specs = [];
+  if (p.beds) specs.push({ icon:'🛏', val: p.beds, label: p.beds === 1 ? 'Bedroom' : 'Bedrooms' });
+  if (p.baths) specs.push({ icon:'🚿', val: p.baths, label: p.baths === 1 ? 'Bathroom' : 'Bathrooms' });
+  if (p.area) specs.push({ icon:'📐', val: p.area + ' m²', label: 'Floor Area' });
+  specs.push({ icon:'🏷️', val: p.type ? p.type.charAt(0).toUpperCase()+p.type.slice(1) : 'Property', label: 'Type' });
+  document.getElementById('specsGrid').innerHTML = specs.map(s => `
+    <div class="spec-card">
+      <div class="spec-icon">${s.icon}</div>
+      <span class="spec-val">${s.val}</span>
+      <span class="spec-label">${s.label}</span>
+    </div>`).join('');
+
+  // Room photos
+  const rooms = roomImages[p.type] || roomImages.apartment;
+  document.getElementById('roomsGrid').innerHTML = rooms.map(r => `
+    <div class="room-card">
+      <img class="room-img" src="${r.url}" alt="${r.label}" loading="lazy">
+      <div class="room-label">${r.label}</div>
+    </div>`).join('');
+  lightboxImages = [imgs[0], ...rooms.map(r => r.url)];
+  document.getElementById('morePhotos').textContent = `+${rooms.length} Photos`;
+
+  // Features
+  const features = featuresByType[p.type] || featuresByType.apartment;
+  document.getElementById('featuresGrid').innerHTML = features.map(f => `
+    <div class="feature-item"><div class="feature-check">✓</div>${f}</div>`).join('');
+
+  // Sidebar details
+  document.getElementById('sidebarDetails').innerHTML = `
+    <div class="sidebar-detail"><span class="sidebar-detail-label">Neighbourhood</span><span class="sidebar-detail-val">${p.neighbourhood}</span></div>
+    <div class="sidebar-detail"><span class="sidebar-detail-label">Type</span><span class="sidebar-detail-val" style="text-transform:capitalize">${p.type}</span></div>
+    ${p.beds ? `<div class="sidebar-detail"><span class="sidebar-detail-label">Bedrooms</span><span class="sidebar-detail-val">${p.beds}</span></div>` : ''}
+    ${p.baths ? `<div class="sidebar-detail"><span class="sidebar-detail-label">Bathrooms</span><span class="sidebar-detail-val">${p.baths}</span></div>` : ''}
+    ${p.area ? `<div class="sidebar-detail"><span class="sidebar-detail-label">Area</span><span class="sidebar-detail-val">${p.area} m²</span></div>` : ''}
+    ${p.ref ? `<div class="sidebar-detail"><span class="sidebar-detail-label">Reference</span><span class="sidebar-detail-val">${p.ref}</span></div>` : ''}
+  `;
+
+  // Map
+  if (p.lat && p.lng) {
+    setTimeout(() => {
+      const map = L.map('detailMap').setView([p.lat, p.lng], 15);
+      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { attribution:'© OpenStreetMap' }).addTo(map);
+      const icon = L.divIcon({
+        className:'',
+        html:`<div style="width:32px;height:32px;background:#C9A227;border-radius:50% 50% 50% 0;transform:rotate(-45deg);border:3px solid white;box-shadow:0 3px 12px rgba(0,0,0,0.3)"></div>`,
+        iconSize:[32,32],iconAnchor:[16,32],popupAnchor:[0,-34]
+      });
+      L.marker([p.lat, p.lng], { icon }).addTo(map).bindPopup(`<b>${p.title_en}</b><br>📍 ${p.neighbourhood}`).openPopup();
+    }, 200);
+  } else {
+    document.getElementById('mapSection').style.display = 'none';
+  }
+
+  // Show content
+  document.getElementById('loadingScreen').style.display = 'none';
+  document.getElementById('propContent').style.display = 'block';
+}
+
+loadProperty();
+</script>
+</body>
+</html>
